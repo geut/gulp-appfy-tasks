@@ -1,2 +1,1 @@
-require('babel/register');
-module.exports = require('./babel-index.js');
+module.exports = require('./build/index.js');

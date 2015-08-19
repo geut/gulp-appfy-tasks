@@ -7,7 +7,7 @@
  * devDependencies
  */
 import gulp from 'gulp';
-import defaultConfig from './default-config.json';
+import defaultConfig from '../default-config.json';
 import path from 'path';
 import util from 'util';
 import runSequence from 'run-sequence';

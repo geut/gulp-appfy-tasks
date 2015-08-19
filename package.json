@@ -6,6 +6,7 @@
   "dependencies": {
     "babel": "^5.8.21",
     "babel-eslint": "^4.0.5",
+    "babel-runtime": "^5.8.20",
     "browser-sync": "^1.7.0",
     "browserify": "^8.0.3",
     "bundle-collapser": "^1.1.4",
@@ -32,7 +33,10 @@
     "watchify": "^2.3.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -r build",
+    "build": "babel src --optional runtime --out-dir build",
+    "watch": "babel src --watch --optional runtime --out-dir build"
   },
   "repository": {
     "type": "git",
