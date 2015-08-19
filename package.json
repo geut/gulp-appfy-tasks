@@ -1,9 +1,9 @@
 {
   "name": "gulp-appfy-tasks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Set of gulp tasks used in slush-seed-appfy",
   "main": "index.js",
-  "devDependencies": {
+  "dependencies": {
     "babel": "^5.8.21",
     "babel-eslint": "^4.0.5",
     "browser-sync": "^1.7.0",
