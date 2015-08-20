@@ -10,9 +10,10 @@ export default function buildTask( userConfig ) {
     return ( cb ) => {
         if (config.isProduction) {
             runSequence( 'clean', 'browserify', 'postcss', cb );
+        } else {
+            config.debug = true;
+            config.watchify = true;
+            runSequence( 'browserify', 'postcss', cb );
         }
-        config.debug = true;
-        config.watchify = true;
-        runSequence( 'browserify', 'postcss', cb );
     };
 }

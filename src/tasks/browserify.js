@@ -69,6 +69,10 @@ export default function browserifyTask( userConfig ) {
             entries: path.join(config.sourcePath, config.entryJs),
             debug: config.debug || false
         } );
+        bundler.plugin(require('css-modulesify'), {
+            rootDir: config.basePath,
+            output: path.join(config.destPath, config.entryCss)
+        });
 
         if ( config.watchify ) {
             bundler = watchify( bundler );

@@ -7,6 +7,7 @@
     "browser-sync": "^1.7.0",
     "browserify": "^8.0.3",
     "bundle-collapser": "^1.1.4",
+    "css-modulesify": "^0.5.0",
     "cssnano": "^1.0.1",
     "del": "^1.1.1",
     "gulp": "^3.8.10",

@@ -113,6 +113,10 @@ function browserifyTask(userConfig) {
             entries: _path2['default'].join(config.sourcePath, config.entryJs),
             debug: config.debug || false
         });
+        bundler.plugin(require('css-modulesify'), {
+            rootDir: config.basePath,
+            output: _path2['default'].join(config.destPath, config.entryCss)
+        });
 
         if (config.watchify) {
             bundler = (0, _watchify2['default'])(bundler);
