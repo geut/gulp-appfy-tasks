@@ -5,6 +5,7 @@ var _interopRequireDefault = require('babel-runtime/helpers/interop-require-defa
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
+exports['default'] = browserSyncTask;
 
 var _browserSync = require('browser-sync');
 
@@ -16,7 +17,8 @@ var _browserSync2 = _interopRequireDefault(_browserSync);
  * @return {function}        Function task
  */
 
-exports['default'] = function (config) {
+function browserSyncTask(userConfig) {
+    var config = userConfig || this.config;
     return function () {
         (0, _browserSync2['default'])({
             port: config.browsersync.port,
@@ -26,6 +28,7 @@ exports['default'] = function (config) {
             }
         });
     };
-};
+}
 
 module.exports = exports['default'];
+//# sourceMappingURL=browser-sync.js.map

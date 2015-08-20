@@ -15,7 +15,8 @@ import nano from 'cssnano';
  * @param  {object} config Global configuration
  * @return {function}       Function task
  */
-export default (config) => {
+export default function postcssTask( userConfig ) {
+    const config = userConfig || this.config;
     const plumberOptions = {};
     if (config.notify.onError) {
         plumberOptions.errorHandler = notify.onError('PostCSS Error: <%= error.message %>');
@@ -58,4 +59,4 @@ export default (config) => {
 
         return stream;
     };
-};
+}

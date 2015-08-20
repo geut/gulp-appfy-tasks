@@ -1,0 +1,7 @@
+{
+  "name": "test",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "jquery": "^2.1.3"
+  }
+}

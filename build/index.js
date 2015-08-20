@@ -30,10 +30,6 @@ var _util = require('util');
 
 var _util2 = _interopRequireDefault(_util);
 
-var _runSequence = require('run-sequence');
-
-var _runSequence2 = _interopRequireDefault(_runSequence);
-
 /**
  * tasks import
  */
@@ -67,16 +63,9 @@ var _tasksServeJs = require('./tasks/serve.js');
 var _tasksServeJs2 = _interopRequireDefault(_tasksServeJs);
 
 var appfy = {
-    tasks: {
-        clean: _tasksCleanJs2['default'],
-        browserify: _tasksBrowserifyJs2['default'],
-        postcss: _tasksPostcssJs2['default'],
-        browserSync: _tasksBrowserSyncJs2['default'],
-        watchFiles: _tasksWatchFilesJs2['default'],
-        build: _tasksBuildJs2['default'],
-        serve: _tasksServeJs2['default']
-    },
-    init: function init(basePath, userConfig) {
+    tasks: {},
+    init: function init(basePath, userConfig, userGulp) {
+        this.gulp = userGulp || _gulp2['default'];
         this.userConfig = userConfig;
         this.defaultConfig = _defaultConfigJson2['default'];
         this.config = _defaultConfigJson2['default'];
@@ -95,26 +84,40 @@ var appfy = {
         } else {
             this.config.isProduction = false;
         }
+
+        /**
+         * Autotasks
+         */
+        this.tasks.clean = _tasksCleanJs2['default'].bind(this);
+        this.tasks.browserify = _tasksBrowserifyJs2['default'].bind(this);
+        this.tasks.postcss = _tasksPostcssJs2['default'].bind(this);
+        this.tasks.browserSync = _tasksBrowserSyncJs2['default'].bind(this);
+        this.tasks.watchFiles = _tasksWatchFilesJs2['default'].bind(this);
+        this.tasks.build = _tasksBuildJs2['default'].bind(this);
+        this.tasks.serve = _tasksServeJs2['default'].bind(this);
         return this;
     },
     defineTasks: function defineTasks() {
+        var runSequence = require('run-sequence').use(this.gulp);
+
         /**
          * Gulp task definitions
          */
-        _gulp2['default'].task('clean', this.tasks.clean(this.config));
-        _gulp2['default'].task('browserify', this.tasks.browserify(this.config));
-        _gulp2['default'].task('postcss', this.tasks.postcss(this.config));
-        _gulp2['default'].task('browser-sync', this.tasks.browserSync(this.config));
-        _gulp2['default'].task('watch-files', this.tasks.watchFiles(this.config));
+        this.gulp.task('clean', this.tasks.clean());
+        this.gulp.task('browserify', this.tasks.browserify());
+        this.gulp.task('postcss', this.tasks.postcss());
+        this.gulp.task('browser-sync', this.tasks.browserSync());
+        this.gulp.task('watch-files', this.tasks.watchFiles());
 
-        _gulp2['default'].task('build', this.tasks.build(this.config));
-        _gulp2['default'].task('serve', this.tasks.serve(this.config));
+        this.gulp.task('build', this.tasks.build());
+        this.gulp.task('serve', this.tasks.serve());
 
-        _gulp2['default'].task('default', function defaultTask(cb) {
-            (0, _runSequence2['default'])('clean', 'build', 'serve', cb);
+        this.gulp.task('default', function defaultTask(cb) {
+            runSequence('clean', 'build', 'serve', cb);
         });
     }
 };
 
 exports['default'] = appfy;
 module.exports = exports['default'];
+//# sourceMappingURL=index.js.map

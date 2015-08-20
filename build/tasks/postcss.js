@@ -5,6 +5,7 @@ var _interopRequireDefault = require('babel-runtime/helpers/interop-require-defa
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
+exports['default'] = postcssTask;
 
 var _gulp = require('gulp');
 
@@ -50,7 +51,8 @@ var _cssnano2 = _interopRequireDefault(_cssnano);
  * @return {function}       Function task
  */
 
-exports['default'] = function (config) {
+function postcssTask(userConfig) {
+    var config = userConfig || this.config;
     var plumberOptions = {};
     if (config.notify.onError) {
         plumberOptions.errorHandler = _gulpNotify2['default'].onError('PostCSS Error: <%= error.message %>');
@@ -85,6 +87,7 @@ exports['default'] = function (config) {
 
         return stream;
     };
-};
+}
 
 module.exports = exports['default'];
+//# sourceMappingURL=postcss.js.map

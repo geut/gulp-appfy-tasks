@@ -5,6 +5,7 @@ var _interopRequireDefault = require('babel-runtime/helpers/interop-require-defa
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
+exports['default'] = browserifyTask;
 
 var _gulp = require('gulp');
 
@@ -64,7 +65,8 @@ var _vinylBuffer2 = _interopRequireDefault(_vinylBuffer);
  * @return {function}        Function task
  */
 
-exports['default'] = function (config) {
+function browserifyTask(userConfig) {
+    var config = userConfig || this.config;
     var onBundleError = undefined;
     if (config.notify.onError) {
         onBundleError = _gulpNotify2['default'].onError('Browserify Error: <%= error.message %>');
@@ -124,6 +126,7 @@ exports['default'] = function (config) {
 
         return browserifyBundle(bundler);
     };
-};
+}
 
 module.exports = exports['default'];
+//# sourceMappingURL=browserify.js.map

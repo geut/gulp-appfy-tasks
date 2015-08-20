@@ -1,30 +1,28 @@
-'use strict';
-
-var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
-
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
-
-var _runSequence = require('run-sequence');
-
-var _runSequence2 = _interopRequireDefault(_runSequence);
-
 /**
  * Gulp task to build the app for production
  * @param  {object} config Global configuration
  * @return {function}      Function task
  */
+'use strict';
 
-exports['default'] = function (config) {
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+exports['default'] = buildTask;
+
+function buildTask(userConfig) {
+    var config = userConfig || this.config;
+    var runSequence = require('run-sequence').use(this.gulp);
+
     return function (cb) {
         if (config.isProduction) {
-            (0, _runSequence2['default'])('clean', 'browserify', 'postcss', cb);
+            runSequence('clean', 'browserify', 'postcss', cb);
         }
         config.debug = true;
         config.watchify = true;
-        (0, _runSequence2['default'])('browserify', 'postcss', cb);
+        runSequence('browserify', 'postcss', cb);
     };
-};
+}
 
 module.exports = exports['default'];
+//# sourceMappingURL=build.js.map

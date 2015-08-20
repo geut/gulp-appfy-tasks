@@ -17,7 +17,8 @@ import buffer from 'vinyl-buffer';
  * @param  {object} config Global configuration
  * @return {function}        Function task
  */
-export default (config) => {
+export default function browserifyTask( userConfig ) {
+    const config = userConfig || this.config;
     let onBundleError;
     if ( config.notify.onError ) {
         onBundleError = notify.onError( 'Browserify Error: <%= error.message %>' );
@@ -82,4 +83,4 @@ export default (config) => {
 
         return browserifyBundle( bundler );
     };
-};
+}

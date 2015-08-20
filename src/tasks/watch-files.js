@@ -1,14 +1,15 @@
 import watch from 'gulp-watch';
 import browserSync from 'browser-sync';
 import path from 'path';
-import runSequence from 'run-sequence';
 
 /**
  * Gulp task to watch files
  * @param  {object} config Global configuration
  * @return {function}      Function task
  */
-export default ( config ) => {
+export default function watchFilesTask( userConfig ) {
+    const config = userConfig || this.config;
+    const runSequence = require('run-sequence').use(this.gulp);
     const stylesSourceWatch = [
         path.join(config.sourcePath, 'node_modules/**/*.css'),
         path.join(config.sourcePath, 'styles/**/*.css'),
@@ -24,4 +25,4 @@ export default ( config ) => {
             runSequence( 'postcss', browserSync.reload );
         } );
     };
-};
+}

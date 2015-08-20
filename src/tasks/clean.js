@@ -5,8 +5,9 @@ import del from 'del';
  * @param  {function} cb Callback
  * @return {function}      Function task
  */
-export default ( config ) => {
+export default function cleanTask( userConfig ) {
+    const config = userConfig || this.config;
     return ( cb ) => {
         del( config.destPath, cb );
     };
-};
+}

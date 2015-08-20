@@ -36,8 +36,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -r build",
-    "build": "babel src --optional runtime --out-dir build",
-    "watch": "babel src --watch --optional runtime --out-dir build"
+    "build": "babel src --source-maps --optional runtime --out-dir build",
+    "watch": "babel src --watch --source-maps --optional runtime --out-dir build"
   },
   "repository": {
     "type": "git",

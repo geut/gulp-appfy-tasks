@@ -5,7 +5,8 @@ import browserSync from 'browser-sync';
  * @param  {object} config Global configuration
  * @return {function}        Function task
  */
-export default ( config ) => {
+export default function browserSyncTask( userConfig ) {
+    const config = userConfig || this.config;
     return () => {
         browserSync( {
             port: config.browsersync.port,
@@ -15,4 +16,4 @@ export default ( config ) => {
             }
         } );
     };
-};
+}
