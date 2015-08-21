@@ -23,40 +23,40 @@ export default function postcssTask( userConfig ) {
     }
 
     return () => {
-        /**
-         * TODO: check the sourcemap problems
-         */
-        const processors = [
-            postcssImport(),
-            postcssUrl({
-                url: config.debug ? 'rebase' : 'copy'
-            }),
-            nano()
-        ];
-
-        let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
-            .pipe(plumber(plumberOptions))
-            .pipe( postcss(processors, {
-                map: config.debug || false,
-                to: path.join(config.destPath, config.entryCss)
-            }) );
-
-        if ( config.debug ) {
-            stream = stream
-                .pipe(sourcemaps.init({
-                    loadMaps: true
-                }))
-                .pipe(sourcemaps.write('./', {
-                    sourceRoot: '/' + path.basename(config.sourcePath)
-                }));
-        }
-
-        stream = stream.pipe(gulp.dest(config.destPath));
-
-        if (config.notify.onUpdated) {
-            return stream.pipe(notify('PostCSS Bundle - Updated'));
-        }
-
-        return stream;
+        // /**
+        //  * TODO: i'm trying replace this task with the css-modulesify, maybe is going to be deprecated!
+        //  */
+        // const processors = [
+        //     postcssImport(),
+        //     postcssUrl({
+        //         url: config.debug ? 'rebase' : 'copy'
+        //     }),
+        //     nano()
+        // ];
+        //
+        // let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
+        //     .pipe(plumber(plumberOptions))
+        //     .pipe( postcss(processors, {
+        //         map: config.debug || false,
+        //         to: path.join(config.destPath, config.entryCss)
+        //     }) );
+        //
+        // if ( config.debug ) {
+        //     stream = stream
+        //         .pipe(sourcemaps.init({
+        //             loadMaps: true
+        //         }))
+        //         .pipe(sourcemaps.write('./', {
+        //             sourceRoot: '/' + path.basename(config.sourcePath)
+        //         }));
+        // }
+        //
+        // stream = stream.pipe(gulp.dest(config.destPath));
+        //
+        // if (config.notify.onUpdated) {
+        //     return stream.pipe(notify('PostCSS Bundle - Updated'));
+        // }
+        //
+        // return stream;
     };
 }

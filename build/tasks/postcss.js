@@ -59,33 +59,41 @@ function postcssTask(userConfig) {
     }
 
     return function () {
-        /**
-         * TODO: check the sourcemap problems
-         */
-        var processors = [(0, _postcssImport2['default'])(), (0, _postcssUrl2['default'])({
-            url: config.debug ? 'rebase' : 'copy'
-        }), (0, _cssnano2['default'])()];
-
-        var stream = _gulp2['default'].src(_path2['default'].join(config.sourcePath, config.entryCss)).pipe((0, _gulpPlumber2['default'])(plumberOptions)).pipe((0, _gulpPostcss2['default'])(processors, {
-            map: config.debug || false,
-            to: _path2['default'].join(config.destPath, config.entryCss)
-        }));
-
-        if (config.debug) {
-            stream = stream.pipe(_gulpSourcemaps2['default'].init({
-                loadMaps: true
-            })).pipe(_gulpSourcemaps2['default'].write('./', {
-                sourceRoot: '/' + _path2['default'].basename(config.sourcePath)
-            }));
-        }
-
-        stream = stream.pipe(_gulp2['default'].dest(config.destPath));
-
-        if (config.notify.onUpdated) {
-            return stream.pipe((0, _gulpNotify2['default'])('PostCSS Bundle - Updated'));
-        }
-
-        return stream;
+        // /**
+        //  * TODO: i'm trying replace this task with the css-modulesify, maybe is going to be deprecated!
+        //  */
+        // const processors = [
+        //     postcssImport(),
+        //     postcssUrl({
+        //         url: config.debug ? 'rebase' : 'copy'
+        //     }),
+        //     nano()
+        // ];
+        //
+        // let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
+        //     .pipe(plumber(plumberOptions))
+        //     .pipe( postcss(processors, {
+        //         map: config.debug || false,
+        //         to: path.join(config.destPath, config.entryCss)
+        //     }) );
+        //
+        // if ( config.debug ) {
+        //     stream = stream
+        //         .pipe(sourcemaps.init({
+        //             loadMaps: true
+        //         }))
+        //         .pipe(sourcemaps.write('./', {
+        //             sourceRoot: '/' + path.basename(config.sourcePath)
+        //         }));
+        // }
+        //
+        // stream = stream.pipe(gulp.dest(config.destPath));
+        //
+        // if (config.notify.onUpdated) {
+        //     return stream.pipe(notify('PostCSS Bundle - Updated'));
+        // }
+        //
+        // return stream;
     };
 }
 
