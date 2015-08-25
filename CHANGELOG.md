@@ -1,3 +1,11 @@
+<a name="1.0.10"></a>
+## 1.0.10 (2015-08-25)
+
+
+* babel-runtime as dependencie ([996d9b3](https://github.com/geut/gulp-appfy-tasks/commit/996d9b3))
+
+
+
 <a name="1.0.9"></a>
 ## 1.0.9 (2015-08-25)
 
