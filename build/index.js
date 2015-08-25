@@ -113,6 +113,7 @@ var appfy = {
         this.gulp.task('serve', this.tasks.serve());
 
         this.gulp.task('default', function defaultTask(cb) {
+            config.watchify = true;
             runSequence('clean', 'build', 'serve', cb);
         });
     }

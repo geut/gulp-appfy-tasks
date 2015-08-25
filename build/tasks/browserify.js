@@ -118,7 +118,7 @@ function browserifyTask(userConfig) {
             output: _path2['default'].join(config.destPath, config.entryCss)
         });
 
-        if (!config.isProduction) {
+        if (config.watchify) {
             bundler = (0, _watchify2['default'])(bundler);
 
             bundler.on('update', function () {

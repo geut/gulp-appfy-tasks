@@ -74,7 +74,7 @@ export default function browserifyTask( userConfig ) {
             output: path.join(config.destPath, config.entryCss)
         });
 
-        if ( !(config.isProduction) ) {
+        if ( config.watchify ) {
             bundler = watchify( bundler );
 
             bundler.on( 'update', () => {
