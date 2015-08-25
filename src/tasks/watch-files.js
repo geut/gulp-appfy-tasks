@@ -18,7 +18,7 @@ export default function watchFilesTask( userConfig ) {
 
     return () => {
         watch( path.join(config.basePath, config.serverPath, 'index.html'), () => {
-            runSequence( 'dev', browserSync.reload );
+            runSequence( 'build', browserSync.reload );
         } );
 
         watch( stylesSourceWatch, () => {

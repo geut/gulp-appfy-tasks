@@ -70,11 +70,11 @@ function postcssTask(userConfig) {
         }), (0, _cssnano2['default'])()];
 
         var stream = _gulp2['default'].src(_path2['default'].join(config.sourcePath, config.entryCss)).pipe((0, _gulpPlumber2['default'])(plumberOptions)).pipe((0, _gulpPostcss2['default'])(processors, {
-            map: config.debug || false,
+            map: !config.isProduction,
             to: _path2['default'].join(config.destPath, config.entryCss)
         }));
 
-        if (config.debug) {
+        if (!config.isProduction) {
             stream = stream.pipe(_gulpSourcemaps2['default'].init({
                 loadMaps: true
             })).pipe(_gulpSourcemaps2['default'].write('./', {

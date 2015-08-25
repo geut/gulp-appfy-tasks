@@ -6,13 +6,12 @@
   "entryCss": "index.css",
   "entryJs": "index.js",
   "entryHtml": "index.html",
-  "watchify": false,
   "browsersync": {
     "port": 3000,
     "notify": false
   },
   "notify" : {
-    "onError": true,
-    "onUpdated": true
+    "onError": false,
+    "onUpdated": false
   }
 }

@@ -8,7 +8,6 @@ export default function serveTask( userConfig ) {
     const runSequence = require('run-sequence').use(this.gulp);
 
     return ( cb ) => {
-        config.watchify = true;
         runSequence( 'browser-sync', 'watch-files', cb );
     };
 }

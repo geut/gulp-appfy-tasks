@@ -32,7 +32,7 @@ function watchFilesTask(userConfig) {
 
     return function () {
         (0, _gulpWatch2['default'])(_path2['default'].join(config.basePath, config.serverPath, 'index.html'), function () {
-            runSequence('dev', _browserSync2['default'].reload);
+            runSequence('build', _browserSync2['default'].reload);
         });
 
         (0, _gulpWatch2['default'])(stylesSourceWatch, function () {

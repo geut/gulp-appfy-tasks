@@ -40,11 +40,11 @@ export default function postcssTask( userConfig ) {
         let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
             .pipe(plumber(plumberOptions))
             .pipe( postcss(processors, {
-                map: config.debug || false,
+                map: !(config.isProduction),
                 to: path.join(config.destPath, config.entryCss)
             }) );
 
-        if ( config.debug ) {
+        if ( !(config.isProduction) ) {
             stream = stream
                 .pipe(sourcemaps.init({
                     loadMaps: true

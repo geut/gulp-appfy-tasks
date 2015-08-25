@@ -82,13 +82,13 @@ function browserifyTask(userConfig) {
      * @return {object} stream  Gulp stream
      */
     function browserifyBundle(bundler) {
-        if (!config.debug) {
+        if (config.isProduction) {
             bundler.plugin(_bundleCollapserPlugin2['default']);
         }
 
         var stream = bundler.bundle().on('error', onBundleError).pipe((0, _vinylSourceStream2['default'])('index.js'));
 
-        if (config.debug) {
+        if (!config.isProduction) {
             // source map external
             stream = stream.pipe((0, _vinylBuffer2['default'])()).pipe(_gulpSourcemaps2['default'].init({
                 loadMaps: true
@@ -111,14 +111,14 @@ function browserifyTask(userConfig) {
     return function () {
         var bundler = (0, _browserify2['default'])({
             entries: _path2['default'].join(config.sourcePath, config.entryJs),
-            debug: config.debug || false
+            debug: !config.isProduction
         });
         bundler.plugin(require('css-modulesify'), {
             rootDir: config.basePath,
             output: _path2['default'].join(config.destPath, config.entryCss)
         });
 
-        if (config.watchify) {
+        if (!config.isProduction) {
             bundler = (0, _watchify2['default'])(bundler);
 
             bundler.on('update', function () {

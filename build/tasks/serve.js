@@ -15,7 +15,6 @@ function serveTask(userConfig) {
     var runSequence = require('run-sequence').use(this.gulp);
 
     return function (cb) {
-        config.watchify = true;
         runSequence('browser-sync', 'watch-files', cb);
     };
 }
