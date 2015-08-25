@@ -1,3 +1,11 @@
+<a name="1.0.15"></a>
+## 1.0.15 (2015-08-25)
+
+
+* major changes in default configuration. fix error in watch task ([b220758](https://github.com/geut/gulp-appfy-tasks/commit/b220758))
+
+
+
 <a name="1.0.10"></a>
 ## 1.0.10 (2015-08-25)
 
