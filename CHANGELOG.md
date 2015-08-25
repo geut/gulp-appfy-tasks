@@ -1,3 +1,11 @@
+<a name="1.0.9"></a>
+## 1.0.9 (2015-08-25)
+
+
+* replace postcss-url by postcss-copy ([3fdef2f](https://github.com/geut/gulp-appfy-tasks/commit/3fdef2f))
+
+
+
 <a name="1.0.8"></a>
 ## 1.0.8 (2015-08-24)
 
