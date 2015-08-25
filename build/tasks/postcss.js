@@ -37,9 +37,9 @@ var _postcssImport = require('postcss-import');
 
 var _postcssImport2 = _interopRequireDefault(_postcssImport);
 
-var _postcssUrl = require('postcss-url');
+var _postcssCopy = require('postcss-copy');
 
-var _postcssUrl2 = _interopRequireDefault(_postcssUrl);
+var _postcssCopy2 = _interopRequireDefault(_postcssCopy);
 
 var _cssnano = require('cssnano');
 
@@ -62,8 +62,11 @@ function postcssTask(userConfig) {
         /**
          * TODO: check the sourcemap problems
          */
-        var processors = [(0, _postcssImport2['default'])(), (0, _postcssUrl2['default'])({
-            url: config.debug ? 'rebase' : 'copy'
+        var processors = [(0, _postcssImport2['default'])(), (0, _postcssCopy2['default'])({
+            src: config.sourcePath,
+            dest: config.destPath,
+            keepRelativeSrcPath: false,
+            template: '[assetsPath]/[hash].[ext]'
         }), (0, _cssnano2['default'])()];
 
         var stream = _gulp2['default'].src(_path2['default'].join(config.sourcePath, config.entryCss)).pipe((0, _gulpPlumber2['default'])(plumberOptions)).pipe((0, _gulpPostcss2['default'])(processors, {

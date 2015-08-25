@@ -7,7 +7,7 @@ import sourcemaps from 'gulp-sourcemaps';
 // PostCSS and plugins
 import postcss from 'gulp-postcss';
 import postcssImport from 'postcss-import';
-import postcssUrl from 'postcss-url';
+import postcssCopy from 'postcss-copy';
 import nano from 'cssnano';
 
 /**
@@ -28,8 +28,11 @@ export default function postcssTask( userConfig ) {
          */
         const processors = [
             postcssImport(),
-            postcssUrl({
-                url: config.debug ? 'rebase' : 'copy'
+            postcssCopy({
+                src: config.sourcePath,
+                dest: config.destPath,
+                keepRelativeSrcPath: false,
+                template: '[assetsPath]/[hash].[ext]'
             }),
             nano()
         ];
