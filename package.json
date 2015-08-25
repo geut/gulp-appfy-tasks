@@ -4,6 +4,7 @@
   "description": "Set of gulp tasks used in slush-seed-appfy",
   "main": "index.js",
   "dependencies": {
+    "babel-runtime": "^5.8.20",
     "browser-sync": "^2.8.2",
     "browserify": "^11.0.1",
     "bundle-collapser": "^1.2.1",
@@ -29,7 +30,6 @@
   "devDependencies": {
     "babel": "^5.8.21",
     "babel-eslint": "^4.0.10",
-    "babel-runtime": "^5.8.20",
     "eslint": "^1.2.1",
     "eslint-config-airbnb": "0.0.8",
     "eslint-plugin-react": "^3.2.3"
