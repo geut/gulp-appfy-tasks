@@ -7,9 +7,9 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = cleanTask;
 
-var _del = require('del');
+var _gulpRimraf = require('gulp-rimraf');
 
-var _del2 = _interopRequireDefault(_del);
+var _gulpRimraf2 = _interopRequireDefault(_gulpRimraf);
 
 /**
  * Task clean
@@ -18,9 +18,10 @@ var _del2 = _interopRequireDefault(_del);
  */
 
 function cleanTask(userConfig) {
+    var gulp = this.gulp;
     var config = userConfig || this.config;
-    return function (cb) {
-        (0, _del2['default'])(config.destPath, cb);
+    return function () {
+        return gulp.src(config.destPath, { read: false }).pipe((0, _gulpRimraf2['default'])({ force: true }));
     };
 }
 

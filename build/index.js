@@ -98,6 +98,7 @@ var appfy = {
         return this;
     },
     defineTasks: function defineTasks() {
+        var config = this.config;
         var runSequence = require('run-sequence').use(this.gulp);
 
         /**

@@ -1,4 +1,3 @@
-import gulp from 'gulp';
 import browserify from 'browserify';
 import watchify from 'watchify';
 import browserSync from 'browser-sync';
@@ -18,6 +17,7 @@ import buffer from 'vinyl-buffer';
  * @return {function}        Function task
  */
 export default function browserifyTask( userConfig ) {
+    const gulp = this.gulp;
     const config = userConfig || this.config;
     let onBundleError;
     if ( config.notify.onError ) {

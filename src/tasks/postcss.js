@@ -1,4 +1,3 @@
-import gulp from 'gulp';
 import path from 'path';
 import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
@@ -16,6 +15,7 @@ import nano from 'cssnano';
  * @return {function}       Function task
  */
 export default function postcssTask( userConfig ) {
+    const gulp = this.gulp;
     const config = userConfig || this.config;
     const plumberOptions = {};
     if (config.notify.onError) {

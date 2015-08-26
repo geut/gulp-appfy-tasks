@@ -7,10 +7,6 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = postcssTask;
 
-var _gulp = require('gulp');
-
-var _gulp2 = _interopRequireDefault(_gulp);
-
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
@@ -52,6 +48,7 @@ var _cssnano2 = _interopRequireDefault(_cssnano);
  */
 
 function postcssTask(userConfig) {
+    var gulp = this.gulp;
     var config = userConfig || this.config;
     var plumberOptions = {};
     if (config.notify.onError) {
@@ -69,7 +66,7 @@ function postcssTask(userConfig) {
             template: '[assetsPath]/[hash].[ext]'
         }), (0, _cssnano2['default'])()];
 
-        var stream = _gulp2['default'].src(_path2['default'].join(config.sourcePath, config.entryCss)).pipe((0, _gulpPlumber2['default'])(plumberOptions)).pipe((0, _gulpPostcss2['default'])(processors, {
+        var stream = gulp.src(_path2['default'].join(config.sourcePath, config.entryCss)).pipe((0, _gulpPlumber2['default'])(plumberOptions)).pipe((0, _gulpPostcss2['default'])(processors, {
             map: !config.isProduction,
             to: _path2['default'].join(config.destPath, config.entryCss)
         }));
@@ -82,7 +79,7 @@ function postcssTask(userConfig) {
             }));
         }
 
-        stream = stream.pipe(_gulp2['default'].dest(config.destPath));
+        stream = stream.pipe(gulp.dest(config.destPath));
 
         if (config.notify.onUpdated) {
             return stream.pipe((0, _gulpNotify2['default'])('PostCSS Bundle - Updated'));

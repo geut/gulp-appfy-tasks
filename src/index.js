@@ -58,6 +58,7 @@ const appfy = {
         return this;
     },
     defineTasks() {
+        const config = this.config;
         const runSequence = require('run-sequence').use(this.gulp);
 
         /**

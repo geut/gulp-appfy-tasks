@@ -7,10 +7,6 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = browserifyTask;
 
-var _gulp = require('gulp');
-
-var _gulp2 = _interopRequireDefault(_gulp);
-
 var _browserify = require('browserify');
 
 var _browserify2 = _interopRequireDefault(_browserify);
@@ -66,6 +62,7 @@ var _vinylBuffer2 = _interopRequireDefault(_vinylBuffer);
  */
 
 function browserifyTask(userConfig) {
+    var gulp = this.gulp;
     var config = userConfig || this.config;
     var onBundleError = undefined;
     if (config.notify.onError) {
@@ -99,7 +96,7 @@ function browserifyTask(userConfig) {
             stream = stream.pipe((0, _gulpStreamify2['default'])((0, _gulpUglify2['default'])()));
         }
 
-        stream = stream.pipe(_gulp2['default'].dest(config.destPath));
+        stream = stream.pipe(gulp.dest(config.destPath));
 
         if (config.notify.onUpdated) {
             return stream.pipe((0, _gulpNotify2['default'])('Browserify Bundle - Updated'));
