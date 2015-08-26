@@ -1,3 +1,11 @@
+<a name="1.0.17"></a>
+## 1.0.17 (2015-08-26)
+
+
+* minor changes ([423e8f1](https://github.com/geut/gulp-appfy-tasks/commit/423e8f1))
+
+
+
 <a name="1.0.16"></a>
 ## 1.0.16 (2015-08-25)
 
