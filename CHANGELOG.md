@@ -1,3 +1,11 @@
+<a name="1.0.18"></a>
+## 1.0.18 (2015-08-26)
+
+
+* fix error with browserify and css-modulesify ([f3592f0](https://github.com/geut/gulp-appfy-tasks/commit/f3592f0))
+
+
+
 <a name="1.0.17"></a>
 ## 1.0.17 (2015-08-26)
 
