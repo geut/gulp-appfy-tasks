@@ -28,14 +28,13 @@ var _path2 = _interopRequireDefault(_path);
 function watchFilesTask(userConfig) {
     var config = userConfig || this.config;
     var runSequence = require('run-sequence').use(this.gulp);
-    var stylesSourceWatch = [_path2['default'].join(config.sourcePath, 'node_modules/**/*.css'), _path2['default'].join(config.sourcePath, 'styles/**/*.css'), _path2['default'].join(config.sourcePath, config.entryCss)];
 
     return function () {
         (0, _gulpWatch2['default'])(_path2['default'].join(config.basePath, config.serverPath, 'index.html'), function () {
             runSequence('build', _browserSync2['default'].reload);
         });
 
-        (0, _gulpWatch2['default'])(stylesSourceWatch, function () {
+        (0, _gulpWatch2['default'])(_path2['default'].join(config.sourcePath, '**/*.{css,scss,less}'), function () {
             runSequence('postcss', _browserSync2['default'].reload);
         });
     };

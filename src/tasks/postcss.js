@@ -7,7 +7,6 @@ import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
 import postcssImport from 'postcss-import';
 import postcssCopy from 'postcss-copy';
-import nano from 'cssnano';
 
 /**
  * Gulp task to process the css files usign PostCSS and cssnext
@@ -22,24 +21,24 @@ export default function postcssTask( userConfig ) {
         plumberOptions.errorHandler = notify.onError('PostCSS Error: <%= error.message %>');
     }
 
-    return () => {
-        /**
-         * TODO: check the sourcemap problems
-         */
-        const processors = [
-            postcssImport(),
-            postcssCopy({
-                src: config.sourcePath,
-                dest: config.destPath,
-                keepRelativeSrcPath: false,
-                template: '[assetsPath]/[hash].[ext]'
-            }),
-            nano()
-        ];
+    // PostCSS plugins configuration
+    let plugins = config.postcssPlugins.before || [];
+    plugins.push(postcssImport());
+    plugins.push(postcssCopy({
+        src: config.sourcePath,
+        dest: config.destPath,
+        keepRelativeSrcPath: false,
+        template: '[assetsPath]/[hash].[ext]'
+    }));
+    if (config.postcssPlugins.after) {
+        plugins = plugins.concat(config.postcssPlugins.after);
+    }
 
+
+    return () => {
         let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
             .pipe(plumber(plumberOptions))
-            .pipe( postcss(processors, {
+            .pipe( postcss(plugins, {
                 map: !(config.isProduction),
                 to: path.join(config.destPath, config.entryCss)
             }) );

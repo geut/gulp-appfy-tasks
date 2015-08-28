@@ -37,10 +37,6 @@ var _postcssCopy = require('postcss-copy');
 
 var _postcssCopy2 = _interopRequireDefault(_postcssCopy);
 
-var _cssnano = require('cssnano');
-
-var _cssnano2 = _interopRequireDefault(_cssnano);
-
 /**
  * Gulp task to process the css files usign PostCSS and cssnext
  * @param  {object} config Global configuration
@@ -55,18 +51,21 @@ function postcssTask(userConfig) {
         plumberOptions.errorHandler = _gulpNotify2['default'].onError('PostCSS Error: <%= error.message %>');
     }
 
-    return function () {
-        /**
-         * TODO: check the sourcemap problems
-         */
-        var processors = [(0, _postcssImport2['default'])(), (0, _postcssCopy2['default'])({
-            src: config.sourcePath,
-            dest: config.destPath,
-            keepRelativeSrcPath: false,
-            template: '[assetsPath]/[hash].[ext]'
-        }), (0, _cssnano2['default'])()];
+    // PostCSS plugins configuration
+    var plugins = config.postcssPlugins.before || [];
+    plugins.push((0, _postcssImport2['default'])());
+    plugins.push((0, _postcssCopy2['default'])({
+        src: config.sourcePath,
+        dest: config.destPath,
+        keepRelativeSrcPath: false,
+        template: '[assetsPath]/[hash].[ext]'
+    }));
+    if (config.postcssPlugins.after) {
+        plugins = plugins.concat(config.postcssPlugins.after);
+    }
 
-        var stream = gulp.src(_path2['default'].join(config.sourcePath, config.entryCss)).pipe((0, _gulpPlumber2['default'])(plumberOptions)).pipe((0, _gulpPostcss2['default'])(processors, {
+    return function () {
+        var stream = gulp.src(_path2['default'].join(config.sourcePath, config.entryCss)).pipe((0, _gulpPlumber2['default'])(plumberOptions)).pipe((0, _gulpPostcss2['default'])(plugins, {
             map: !config.isProduction,
             to: _path2['default'].join(config.destPath, config.entryCss)
         }));

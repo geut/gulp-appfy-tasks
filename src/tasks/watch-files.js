@@ -10,18 +10,13 @@ import path from 'path';
 export default function watchFilesTask( userConfig ) {
     const config = userConfig || this.config;
     const runSequence = require('run-sequence').use(this.gulp);
-    const stylesSourceWatch = [
-        path.join(config.sourcePath, 'node_modules/**/*.css'),
-        path.join(config.sourcePath, 'styles/**/*.css'),
-        path.join(config.sourcePath, config.entryCss)
-    ];
 
     return () => {
         watch( path.join(config.basePath, config.serverPath, 'index.html'), () => {
             runSequence( 'build', browserSync.reload );
         } );
 
-        watch( stylesSourceWatch, () => {
+        watch(path.join(config.sourcePath, '**/*.{css,scss,less}'), () => {
             runSequence( 'postcss', browserSync.reload );
         } );
     };

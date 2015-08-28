@@ -1,4 +1,5 @@
 @import 'batman';
+@import 'test-postcss-plugins/index.scss';
 
 .superman {
     background: url('images/superman.jpg') no-repeat;
