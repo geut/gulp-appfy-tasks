@@ -1,3 +1,11 @@
+<a name="1.1.0"></a>
+# 1.1.0 (2015-08-28)
+
+
+* fix watch styles {css,scss,less} and allow configure postcss plugins (before,after) ([34c36fb](https://github.com/geut/gulp-appfy-tasks/commit/34c36fb))
+
+
+
 <a name="1.0.18"></a>
 ## 1.0.18 (2015-08-26)
 
