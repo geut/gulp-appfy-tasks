@@ -32,7 +32,8 @@
     "eslint-plugin-react": "^3.2.3"
   },
   "files": [
-    "dist"
+    "dist",
+    "default-config.json"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
