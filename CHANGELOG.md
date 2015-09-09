@@ -1,3 +1,11 @@
+<a name="1.2.1"></a>
+## 1.2.1 (2015-09-09)
+
+
+* fix package.json ([9088bb2](https://github.com/geut/gulp-appfy-tasks/commit/9088bb2))
+
+
+
 <a name="1.2.0"></a>
 # 1.2.0 (2015-09-09)
 
