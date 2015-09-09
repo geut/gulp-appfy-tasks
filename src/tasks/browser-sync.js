@@ -5,15 +5,15 @@ import browserSync from 'browser-sync';
  * @param  {object} config Global configuration
  * @return {function}        Function task
  */
-export default function browserSyncTask( userConfig ) {
+export default function browserSyncTask(userConfig) {
     const config = userConfig || this.config;
     return () => {
-        browserSync( {
+        browserSync.init({
             port: config.browsersync.port,
             notify: config.browsersync.notify,
             server: {
                 baseDir: './' + config.serverPath
             }
-        } );
+        });
     };
 }

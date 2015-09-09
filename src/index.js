@@ -58,9 +58,6 @@ const appfy = {
         return this;
     },
     defineTasks() {
-        const config = this.config;
-        const runSequence = require('run-sequence').use(this.gulp);
-
         /**
          * Gulp task definitions
          */
@@ -73,10 +70,7 @@ const appfy = {
         this.gulp.task( 'build', this.tasks.build() );
         this.gulp.task( 'serve', this.tasks.serve() );
 
-        this.gulp.task( 'default', function defaultTask( cb ) {
-            config.watchify = true;
-            runSequence( 'clean', 'build', 'serve', cb );
-        } );
+        this.gulp.task( 'default', ['serve']);
     }
 };
 

@@ -3,11 +3,10 @@
  * @param  {object} config Global configuration
  * @return {function}      Function task
  */
-export default function serveTask( userConfig ) {
-    const config = userConfig || this.config;
+export default function serveTask() {
     const runSequence = require('run-sequence').use(this.gulp);
-
-    return ( cb ) => {
-        runSequence( 'browser-sync', 'watch-files', cb );
+    this.config.watch = true;
+    return (cb) => {
+        runSequence('clean', 'build', 'browser-sync', 'watch-files', cb);
     };
 }

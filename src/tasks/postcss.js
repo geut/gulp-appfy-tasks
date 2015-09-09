@@ -2,6 +2,7 @@ import path from 'path';
 import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
+import browserSync from 'browser-sync';
 
 // PostCSS and plugins
 import postcss from 'gulp-postcss';
@@ -13,7 +14,7 @@ import postcssCopy from 'postcss-copy';
  * @param  {object} config Global configuration
  * @return {function}       Function task
  */
-export default function postcssTask( userConfig ) {
+export default function postcssTask(userConfig) {
     const gulp = this.gulp;
     const config = userConfig || this.config;
     const plumberOptions = {};
@@ -27,23 +28,22 @@ export default function postcssTask( userConfig ) {
     plugins.push(postcssCopy({
         src: config.sourcePath,
         dest: config.destPath,
-        keepRelativeSrcPath: false,
-        template: '[assetsPath]/[hash].[ext]'
+        keepRelativePath: false,
+        template: 'assets/[hash].[ext]'
     }));
     if (config.postcssPlugins.after) {
         plugins = plugins.concat(config.postcssPlugins.after);
     }
 
-
     return () => {
         let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
             .pipe(plumber(plumberOptions))
-            .pipe( postcss(plugins, {
+            .pipe(postcss(plugins, {
                 map: !(config.isProduction),
                 to: path.join(config.destPath, config.entryCss)
-            }) );
+            }));
 
-        if ( !(config.isProduction) ) {
+        if (!(config.isProduction)) {
             stream = stream
                 .pipe(sourcemaps.init({
                     loadMaps: true
@@ -54,6 +54,10 @@ export default function postcssTask( userConfig ) {
         }
 
         stream = stream.pipe(gulp.dest(config.destPath));
+
+        if (config.watch) {
+            stream = stream.pipe(browserSync.stream({match: '**/*.{css,scss,less}'}));
+        }
 
         if (config.notify.onUpdated) {
             return stream.pipe(notify('PostCSS Bundle - Updated'));

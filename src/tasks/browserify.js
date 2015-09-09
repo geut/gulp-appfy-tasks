@@ -16,12 +16,12 @@ import buffer from 'vinyl-buffer';
  * @param  {object} config Global configuration
  * @return {function}        Function task
  */
-export default function browserifyTask( userConfig ) {
+export default function browserifyTask(userConfig) {
     const gulp = this.gulp;
     const config = userConfig || this.config;
     let onBundleError;
-    if ( config.notify.onError ) {
-        onBundleError = notify.onError( 'Browserify Error: <%= error.message %>' );
+    if (config.notify.onError) {
+        onBundleError = notify.onError('Browserify Error: <%= error.message %>');
     } else {
         onBundleError = (err) => {
             util.log(util.colors.red('Error'), err.message);
@@ -33,16 +33,18 @@ export default function browserifyTask( userConfig ) {
      * @param  {object} bundler Bundler object
      * @return {object} stream  Gulp stream
      */
-    function browserifyBundle( bundler ) {
-        if ( config.isProduction ) {
+    function browserifyBundle(bundler) {
+        if (config.isProduction) {
             bundler.plugin(collapse);
         }
 
         let stream = bundler.bundle()
-            .on( 'error', onBundleError )
-            .pipe( source( 'index.js' ) );
+            .on('error', onBundleError)
+            .pipe(source('index.js'));
 
-        if ( !(config.isProduction) ) {
+        if (config.isProduction) {
+            stream = stream.pipe(streamify(uglify()));
+        } else {
             // source map external
             stream = stream.pipe(buffer())
                 .pipe(sourcemaps.init({
@@ -51,36 +53,35 @@ export default function browserifyTask( userConfig ) {
                 .pipe(sourcemaps.write('./', {
                     sourceRoot: '/'
                 }));
-        } else {
-            stream = stream.pipe( streamify( uglify() ) );
         }
 
-        stream = stream.pipe( gulp.dest( config.destPath ) );
+        stream = stream.pipe(gulp.dest(config.destPath));
 
-        if ( config.notify.onUpdated ) {
-            return stream.pipe( notify( 'Browserify Bundle - Updated' ) );
+        if (config.watch) {
+            stream.pipe(browserSync.stream({once: true}));
+        }
+
+        if (config.notify.onUpdated) {
+            return stream.pipe(notify('Browserify Bundle - Updated'));
         }
 
         return stream;
     }
 
     return () => {
-        let bundler = browserify( {
+        let bundler = browserify({
             entries: path.join(config.sourcePath, config.entryJs),
             debug: !(config.isProduction)
-        } );
+        });
 
-        if ( config.watchify ) {
-            bundler = watchify( bundler );
+        if (config.watch) {
+            bundler = watchify(bundler);
 
-            bundler.on( 'update', () => {
-                browserifyBundle( bundler )
-                    .pipe( browserSync.reload( {
-                        stream: true
-                    } ) );
+            bundler.on('update', () => {
+                browserifyBundle(bundler);
             });
         }
 
-        return browserifyBundle( bundler );
+        return browserifyBundle(bundler);
     };
 }

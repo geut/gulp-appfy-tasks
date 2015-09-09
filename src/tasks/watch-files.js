@@ -7,17 +7,17 @@ import path from 'path';
  * @param  {object} config Global configuration
  * @return {function}      Function task
  */
-export default function watchFilesTask( userConfig ) {
+export default function watchFilesTask(userConfig) {
     const config = userConfig || this.config;
     const runSequence = require('run-sequence').use(this.gulp);
 
     return () => {
-        watch( path.join(config.basePath, config.serverPath, 'index.html'), () => {
-            runSequence( 'build', browserSync.reload );
-        } );
+        watch(path.join(config.basePath, config.serverPath, 'index.html'), () => {
+            runSequence('build', browserSync.reload);
+        });
 
         watch(path.join(config.sourcePath, '**/*.{css,scss,less}'), () => {
-            runSequence( 'postcss', browserSync.reload );
-        } );
+            runSequence('postcss');
+        });
     };
 }
