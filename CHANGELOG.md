@@ -1,3 +1,11 @@
+<a name="1.2.2"></a>
+## 1.2.2 (2015-09-09)
+
+
+* replace gulp-rimraf by del ([16a1383](https://github.com/geut/gulp-appfy-tasks/commit/16a1383))
+
+
+
 <a name="1.2.1"></a>
 ## 1.2.1 (2015-09-09)
 
