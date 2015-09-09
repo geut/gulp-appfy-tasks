@@ -1,3 +1,12 @@
+<a name="1.2.0"></a>
+# 1.2.0 (2015-09-09)
+
+
+* fix index.html in test ([2ab8198](https://github.com/geut/gulp-appfy-tasks/commit/2ab8198))
+* fix injection CSS, update dependencies ([38ac411](https://github.com/geut/gulp-appfy-tasks/commit/38ac411))
+
+
+
 <a name="1.1.0"></a>
 # 1.1.0 (2015-08-28)
 
