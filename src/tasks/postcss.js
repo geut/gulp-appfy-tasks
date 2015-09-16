@@ -26,7 +26,7 @@ export default function postcssTask(userConfig) {
     let plugins = config.postcssPlugins.before || [];
     plugins.push(postcssImport());
     plugins.push(postcssCopy({
-        src: config.sourcePath,
+        src: [config.sourcePath, path.join(config.basePath, 'node_modules')],
         dest: config.destPath,
         keepRelativePath: false,
         template: 'assets/[hash].[ext]'
