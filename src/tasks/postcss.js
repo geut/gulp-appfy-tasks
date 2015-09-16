@@ -3,6 +3,7 @@ import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import browserSync from 'browser-sync';
+import gutil from 'gulp-util';
 
 // PostCSS and plugins
 import postcss from 'gulp-postcss';
@@ -20,6 +21,11 @@ export default function postcssTask(userConfig) {
     const plumberOptions = {};
     if (config.notify.onError) {
         plumberOptions.errorHandler = notify.onError('PostCSS Error: <%= error.message %>');
+    } else {
+        plumberOptions.errorHandler = function errorHandler(err) {
+            gutil.log(gutil.colors.bgBlack(err));
+            this.emit('end');
+        };
     }
 
     // PostCSS plugins configuration
