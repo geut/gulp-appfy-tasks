@@ -71,7 +71,12 @@ export default function browserifyTask(userConfig) {
     return () => {
         let bundler = browserify({
             entries: path.join(config.sourcePath, config.entryJs),
-            debug: !(config.isProduction)
+            debug: !(config.isProduction),
+            transforms: config.browserify.transforms
+        });
+
+        config.browserify.plugins.forEach((elem) => {
+            bundler = bundler.plugin(elem.module, elem.opts);
         });
 
         if (config.watch) {

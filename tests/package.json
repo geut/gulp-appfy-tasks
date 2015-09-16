@@ -3,5 +3,8 @@
   "main": "gulpfile.js",
   "dependencies": {
     "jquery": "^2.1.3"
+  },
+  "devDependencies": {
+    "babelify": "^6.3.0"
   }
 }

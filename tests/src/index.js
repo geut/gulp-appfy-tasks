@@ -1,5 +1,5 @@
-var $ = require('jquery'),
-    batman = require('batman');
+const $ = require('jquery');
+const batman = require('batman');
 
 batman();
 
