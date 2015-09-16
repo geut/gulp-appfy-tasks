@@ -1,3 +1,11 @@
+<a name="1.2.4"></a>
+## 1.2.4 (2015-09-16)
+
+
+* add node_modules to the postcss-copy multiple src ([6f702ab](https://github.com/geut/gulp-appfy-tasks/commit/6f702ab))
+
+
+
 <a name="1.2.3"></a>
 ## 1.2.3 (2015-09-16)
 
