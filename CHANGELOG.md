@@ -1,3 +1,11 @@
+<a name="1.2.3"></a>
+## 1.2.3 (2015-09-16)
+
+
+* new feature: configure transforms and plugins from the options of gulp appfy ([13145ed](https://github.com/geut/gulp-appfy-tasks/commit/13145ed))
+
+
+
 <a name="1.2.2"></a>
 ## 1.2.2 (2015-09-09)
 
