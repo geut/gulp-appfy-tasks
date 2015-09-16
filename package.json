@@ -1,6 +1,6 @@
 {
   "name": "gulp-appfy-tasks",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Set of gulp tasks used in slush-seed-appfy",
   "main": "index.js",
   "dependencies": {

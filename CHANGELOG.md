@@ -1,3 +1,11 @@
+<a name="1.2.5"></a>
+## 1.2.5 (2015-09-16)
+
+
+* update postcss-copy, fix error handler for postcss ([225e923](https://github.com/geut/gulp-appfy-tasks/commit/225e923))
+
+
+
 <a name="1.2.4"></a>
 ## 1.2.4 (2015-09-16)
 
