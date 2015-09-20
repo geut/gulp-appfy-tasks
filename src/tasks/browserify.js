@@ -75,6 +75,10 @@ export default function browserifyTask(userConfig) {
             transforms: config.browserify.transforms
         });
 
+        config.browserify.transforms.forEach((elem) => {
+            bundler = bundler.transform(elem);
+        });
+
         config.browserify.plugins.forEach((elem) => {
             bundler = bundler.plugin(elem.module, elem.opts);
         });
