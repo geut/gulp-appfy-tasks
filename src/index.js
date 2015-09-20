@@ -9,7 +9,7 @@
 import defaultGulp from 'gulp';
 import defaultConfig from '../default-config.json';
 import path from 'path';
-import deepAssign from 'deep-assign';
+import extend from 'extend';
 
 /**
  * tasks import
@@ -27,7 +27,7 @@ const appfy = {
     init(basePath, userConfig, userGulp) {
         this.gulp = userGulp || defaultGulp;
         this.config = defaultConfig;
-        deepAssign(this.config, userConfig);
+        extend(true, this.config, userConfig);
 
         /**
          * Autosettings

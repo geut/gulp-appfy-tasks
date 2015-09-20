@@ -4,7 +4,7 @@ import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import browserSync from 'browser-sync';
 import gutil from 'gulp-util';
-import deepAssign from 'deep-assign';
+import extend from 'extend';
 
 // PostCSS and plugins
 import postcss from 'gulp-postcss';
@@ -39,7 +39,7 @@ export default function postcssTask(userConfig) {
         template: 'assets/[hash].[ext]'
     }));
     plugins = plugins.concat(config.postcss.plugins.after);
-    const postcssOptions = deepAssign({}, config.postcss.options, {
+    const postcssOptions = extend(true, {}, config.postcss.options, {
         map: !(config.isProduction),
         to: path.join(config.destPath, config.entryCss)
     });

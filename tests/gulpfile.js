@@ -8,10 +8,12 @@ appfy.init(__dirname, {
             require('babelify')
         ]
     },
-    postcssPlugins: {
-        after: [
-            require('precss')()
-        ]
+    postcss: {
+        plugins: {
+            after: [
+                require('precss')()
+            ]
+        }
     }
 });
 appfy.defineTasks();
