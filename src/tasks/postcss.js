@@ -4,6 +4,7 @@ import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import browserSync from 'browser-sync';
 import gutil from 'gulp-util';
+import deepAssign from 'deep-assign';
 
 // PostCSS and plugins
 import postcss from 'gulp-postcss';
@@ -29,7 +30,7 @@ export default function postcssTask(userConfig) {
     }
 
     // PostCSS plugins configuration
-    let plugins = config.postcssPlugins.before || [];
+    let plugins = config.postcss.plugins.before;
     plugins.push(postcssImport());
     plugins.push(postcssCopy({
         src: [config.sourcePath, path.join(config.basePath, 'node_modules')],
@@ -37,17 +38,16 @@ export default function postcssTask(userConfig) {
         keepRelativePath: false,
         template: 'assets/[hash].[ext]'
     }));
-    if (config.postcssPlugins.after) {
-        plugins = plugins.concat(config.postcssPlugins.after);
-    }
+    plugins = plugins.concat(config.postcss.plugins.after);
+    const postcssOptions = deepAssign({}, config.postcss.options, {
+        map: !(config.isProduction),
+        to: path.join(config.destPath, config.entryCss)
+    });
 
     return () => {
         let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
             .pipe(plumber(plumberOptions))
-            .pipe(postcss(plugins, {
-                map: !(config.isProduction),
-                to: path.join(config.destPath, config.entryCss)
-            }));
+            .pipe(postcss(plugins, postcssOptions));
 
         if (!(config.isProduction)) {
             stream = stream
