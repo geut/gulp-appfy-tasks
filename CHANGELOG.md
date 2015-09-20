@@ -1,3 +1,14 @@
+<a name="1.2.7"></a>
+## 1.2.7 (2015-09-20)
+
+
+* fix add transforms by config ([d2c1f7b](https://github.com/geut/gulp-appfy-tasks/commit/d2c1f7b))
+* minor change ([6b0f908](https://github.com/geut/gulp-appfy-tasks/commit/6b0f908))
+* options for postcss ([1b841ea](https://github.com/geut/gulp-appfy-tasks/commit/1b841ea))
+* replace deep-assign by extend ([81ba10b](https://github.com/geut/gulp-appfy-tasks/commit/81ba10b))
+
+
+
 <a name="1.2.5"></a>
 ## 1.2.5 (2015-09-16)
 
