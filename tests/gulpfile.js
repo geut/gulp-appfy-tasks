@@ -4,15 +4,18 @@
 var appfy = require('../index.js');
 appfy.init(__dirname, {
     browserify: {
-        transforms: [
-            require('babelify')
-        ]
+        extend: function (config, bundler) {
+            return bundler.transform(require('babelify'));
+        }
     },
     postcss: {
-        plugins: {
-            after: [
-                require('precss')()
-            ]
+        plugins: function (config, defaultPlugins) {
+            const list = defaultPlugins.load();
+            list.push(require('precss')());
+            return list;
+        },
+        options: {
+            parser: require('postcss-scss')
         }
     }
 });

@@ -30,15 +30,43 @@ export default function postcssTask(userConfig) {
     }
 
     // PostCSS plugins configuration
-    let plugins = config.postcss.plugins.before;
-    plugins.push(postcssImport());
-    plugins.push(postcssCopy({
-        src: [config.sourcePath, path.join(config.basePath, 'node_modules')],
-        dest: config.destPath,
-        keepRelativePath: false,
-        template: 'assets/[hash].[ext]'
-    }));
-    plugins = plugins.concat(config.postcss.plugins.after);
+    const defaultPlugins = {
+        load(plugins = []) {
+            for (const attr in this) {
+                if (this.hasOwnProperty(attr) && (attr !== 'load')) {
+                    plugins.push(
+                        this[attr]
+                            .plugin(this[attr].options)
+                    );
+                }
+            }
+            return plugins;
+        },
+        'postcss-import': {
+            plugin: postcssImport,
+            options: {}
+        },
+        'postcss-copy': {
+            plugin: postcssCopy,
+            options: {
+                src: [config.sourcePath, path.join(config.basePath, 'node_modules')],
+                dest: config.destPath,
+                keepRelativePath: false,
+                template: 'assets/[hash].[ext]'
+            }
+        }
+    };
+
+    let plugins;
+    if (config.postcss.plugins) {
+        plugins = config.postcss.plugins(
+            config,
+            defaultPlugins
+        );
+    } else {
+        plugins = defaultPlugins.load();
+    }
+
     const postcssOptions = extend(true, {}, config.postcss.options, {
         map: !(config.isProduction),
         to: path.join(config.destPath, config.entryCss)

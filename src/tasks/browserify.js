@@ -10,6 +10,7 @@ import util from 'gulp-util';
 import collapse from 'bundle-collapser/plugin';
 import sourcemaps from 'gulp-sourcemaps';
 import buffer from 'vinyl-buffer';
+import extend from 'extend';
 
 /**
  * Gulp task to run browserify over config.entryJs
@@ -69,18 +70,14 @@ export default function browserifyTask(userConfig) {
     }
 
     return () => {
-        let bundler = browserify({
+        let bundler = browserify(extend(true, {}, config.browserify.options, {
             entries: path.join(config.sourcePath, config.entryJs),
             debug: !(config.isProduction)
-        });
+        }));
 
-        config.browserify.transforms.forEach((elem) => {
-            bundler = bundler.transform(elem);
-        });
-
-        config.browserify.plugins.forEach((elem) => {
-            bundler = bundler.plugin(elem.module, elem.opts);
-        });
+        if (config.browserify.extend) {
+            bundler = config.browserify.extend(config, bundler);
+        }
 
         if (config.watch) {
             bundler = watchify(bundler);

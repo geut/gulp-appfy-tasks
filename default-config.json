@@ -15,14 +15,11 @@
     "onUpdated": false
   },
   "browserify": {
-    "transforms": [],
-    "plugins": []
+    "extend": null,
+    "options": {}
   },
   "postcss": {
-    "plugins": {
-      "before": [],
-      "after": []
-    },
+    "plugins": null,
     "options": {}
   }
 }
