@@ -1,3 +1,11 @@
+<a name="1.3.0"></a>
+# 1.3.0 (2015-09-21)
+
+
+* better way (callback functions) to define transforms and plugins in browserify and postcss ([18d0d9a](https://github.com/geut/gulp-appfy-tasks/commit/18d0d9a))
+
+
+
 <a name="1.2.7"></a>
 ## 1.2.7 (2015-09-20)
 
