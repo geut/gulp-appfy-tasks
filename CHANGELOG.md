@@ -1,3 +1,11 @@
+<a name="1.3.1"></a>
+## 1.3.1 (2015-09-23)
+
+
+* minor fix issue ([76d515d](https://github.com/geut/gulp-appfy-tasks/commit/76d515d))
+
+
+
 <a name="1.3.0"></a>
 # 1.3.0 (2015-09-21)
 
