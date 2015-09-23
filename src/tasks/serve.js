@@ -5,8 +5,9 @@
  */
 export default function serveTask() {
     const runSequence = require('run-sequence').use(this.gulp);
-    this.config.watch = true;
+    const config = this.config;
     return (cb) => {
+        config.watch = true;
         runSequence('clean', 'build', 'browser-sync', 'watch-files', cb);
     };
 }
