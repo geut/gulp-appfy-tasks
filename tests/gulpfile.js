@@ -1,6 +1,3 @@
-/**
- * Gulp tasks to work with browserify, reworkcss and others great tools
- */
 var appfy = require('../index.js');
 appfy.init(__dirname, {
     browserify: {
@@ -19,4 +16,6 @@ appfy.init(__dirname, {
         }
     }
 });
+
+appfy.tasks.clean =
 appfy.defineTasks();

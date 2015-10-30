@@ -33,9 +33,6 @@ npm install gulp-appfy-tasks --save-dev
 Create a gulpfile.js in your root folder (if you don't have it yet) and write this.
 
 ```javascript
-/**
- * Gulp tasks to work with browserify, reworkcss and others great tools
- */
 var appfy = require('gulp-appfy-tasks');
 appfy.init(__dirname);
 appfy.defineTasks();
@@ -55,7 +52,7 @@ This function initialize the appfy object.
 {
     "sourcePath": "src",
     "destPath": "dist",
-    "assetsTemplate": "assets/[hash].[ext]", // relative to the distPath
+    "assetsTemplate": "assets/[hash].[ext]", // relative to the distPath, read more about assets template in the github page of postcss-copy
     "serverPath": "",
     "entryCss": "index.css",
     "entryJs": "index.js",
@@ -79,3 +76,61 @@ This function initialize the appfy object.
 }
 ```
 - userGulp (optional): If is necessary you can set a distinct gulp instance.
+
+### ```defineTasks``` Function
+Initialize the default gulp tasks of appfy.
+
+## Some code examples to help you
+
+### How override the default tasks?
+Maybe you think that this is a big library but this is not that case. Appfy is only a set of gulp task so you can override the task really easier.
+
+```javascript
+var gulp = require('gulp');
+var appfy = require('gulp-appfy-tasks');
+appfy.init(__dirname);
+appfy.defineTasks();
+
+// override the "clean" task
+gulp.task('clean', function (cb) {
+    console.log('i override the clean task');
+    cb();
+});
+```
+
+### How can i extend or set options for browserify?
+You can extend the broserify instance or set options with ```userConfig```
+
+```javascript
+var appfy = require('../index.js');
+appfy.init(__dirname, {
+    browserify: {
+        extend: function (config, bundler) {
+            return bundler.transform(require('babelify'));
+        },
+        options: {} // API official options for browserify
+    },
+});
+appfy.defineTasks();
+```
+
+### How can i extend or set options for postcss?
+You can extend the postcss instance or set options with ```userConfig```
+
+```javascript
+var appfy = require('../index.js');
+appfy.init(__dirname, {
+    postcss: {
+        plugins: function (config, defaultPlugins) {
+            // appfy comes with two excellent postcss plugins: postcss-copy and postcss-import
+            var list = defaultPlugins.load();
+            list.push(require('precss')());
+            return list;
+        },
+        options: {
+            parser: require('postcss-scss') // API official options for postcss
+        }
+    }
+});
+appfy.defineTasks();
+```
