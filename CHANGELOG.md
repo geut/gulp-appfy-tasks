@@ -1,3 +1,12 @@
+<a name="1.3.3"></a>
+## 1.3.3 (2015-10-30)
+
+
+* add assetsTemplate option to work with postcss-copy ([8c8058a](https://github.com/geut/gulp-appfy-tasks/commit/8c8058a))
+* first release of the README.md ([fa31619](https://github.com/geut/gulp-appfy-tasks/commit/fa31619))
+
+
+
 <a name="1.3.1"></a>
 ## 1.3.1 (2015-09-23)
 
