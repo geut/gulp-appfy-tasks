@@ -1,7 +1,7 @@
 import del from 'del';
 
 /**
- * Task clean
+ * Clean task
  * @param  {function} cb Callback
  * @return {function}      Function task
  */

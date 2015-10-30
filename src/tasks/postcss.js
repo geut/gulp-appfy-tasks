@@ -52,7 +52,7 @@ export default function postcssTask(userConfig) {
                 src: [config.sourcePath, path.join(config.basePath, 'node_modules')],
                 dest: config.destPath,
                 keepRelativePath: false,
-                template: 'assets/[hash].[ext]'
+                template: config.assetsTemplate
             }
         }
     };
