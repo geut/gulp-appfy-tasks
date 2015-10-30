@@ -7,7 +7,7 @@ This project has a set of gulp task to create your frontend apps based in our pe
 ## Tools used in the gulp tasks
 - gulp
 - browserify
-- postcss
+- postcss (with postcss-copy and postcss-import)
 - browser-sync
 - notify
 
@@ -66,10 +66,14 @@ This function initialize the appfy object.
         "onUpdated": false
     },
     "browserify": {
+        "sourcemap": true,
+        "collapse": false,
+        "uglify": false,
         "extend": null,
         "options": {}
     },
     "postcss": {
+        "sourcemap": true,
         "plugins": null,
         "options": {}
     }
@@ -102,7 +106,7 @@ gulp.task('clean', function (cb) {
 You can extend the broserify instance or set options with ```userConfig```
 
 ```javascript
-var appfy = require('../index.js');
+var appfy = require('gulp-appfy-tasks');
 appfy.init(__dirname, {
     browserify: {
         extend: function (config, bundler) {
@@ -118,7 +122,7 @@ appfy.defineTasks();
 You can extend the postcss instance or set options with ```userConfig```
 
 ```javascript
-var appfy = require('../index.js');
+var appfy = require('gulp-appfy-tasks');
 appfy.init(__dirname, {
     postcss: {
         plugins: function (config, defaultPlugins) {

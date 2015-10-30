@@ -15,10 +15,14 @@
     "onUpdated": false
   },
   "browserify": {
+    "sourcemap": true,
+    "collapse": false,
+    "uglify": false,
     "extend": null,
     "options": {}
   },
   "postcss": {
+    "sourcemap": true,
     "plugins": null,
     "options": {}
   }

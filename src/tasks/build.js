@@ -8,10 +8,6 @@ export default function buildTask(userConfig) {
     const runSequence = require('run-sequence').use(this.gulp);
 
     return (cb) => {
-        if (config.isProduction) {
-            runSequence('clean', 'browserify', 'postcss', cb);
-        } else {
-            runSequence('browserify', 'postcss', cb);
-        }
+        runSequence('browserify', 'postcss', cb);
     };
 }

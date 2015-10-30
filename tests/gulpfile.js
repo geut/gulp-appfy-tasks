@@ -16,6 +16,4 @@ appfy.init(__dirname, {
         }
     }
 });
-
-appfy.tasks.clean =
 appfy.defineTasks();

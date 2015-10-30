@@ -68,7 +68,7 @@ export default function postcssTask(userConfig) {
     }
 
     const postcssOptions = extend(true, {}, config.postcss.options, {
-        map: !(config.isProduction),
+        map: config.postcss.sourcemap,
         to: path.join(config.destPath, config.entryCss)
     });
 
@@ -77,7 +77,7 @@ export default function postcssTask(userConfig) {
             .pipe(plumber(plumberOptions))
             .pipe(postcss(plugins, postcssOptions));
 
-        if (!(config.isProduction)) {
+        if (config.postcss.sourcemap) {
             stream = stream
                 .pipe(sourcemaps.init({
                     loadMaps: true

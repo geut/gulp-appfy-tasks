@@ -35,7 +35,7 @@ export default function browserifyTask(userConfig) {
      * @return {object} stream  Gulp stream
      */
     function browserifyBundle(bundler) {
-        if (config.isProduction) {
+        if (config.browserify.collapse) {
             bundler.plugin(collapse);
         }
 
@@ -43,9 +43,11 @@ export default function browserifyTask(userConfig) {
             .on('error', onBundleError)
             .pipe(source('index.js'));
 
-        if (config.isProduction) {
+        if (config.browserify.uglify) {
             stream = stream.pipe(streamify(uglify()));
-        } else {
+        }
+
+        if (config.browserify.sourcemap) {
             // source map external
             stream = stream.pipe(buffer())
                 .pipe(sourcemaps.init({
@@ -72,7 +74,7 @@ export default function browserifyTask(userConfig) {
     return () => {
         let bundler = browserify(extend(true, {}, config.browserify.options, {
             entries: path.join(config.sourcePath, config.entryJs),
-            debug: !(config.isProduction)
+            debug: config.browserify.sourcemap
         }));
 
         if (config.browserify.extend) {
