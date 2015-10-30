@@ -1,3 +1,11 @@
+<a name="2.0.0"></a>
+# 2.0.0 (2015-10-30)
+
+
+* new options for browserify (uglify, collapse, sourcemap) and for postcss (sourcemap) ([9e94f6c](https://github.com/geut/gulp-appfy-tasks/commit/9e94f6c))
+
+
+
 <a name="1.3.3"></a>
 ## 1.3.3 (2015-10-30)
 
