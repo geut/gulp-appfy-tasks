@@ -6,8 +6,15 @@
 export default function buildTask(userConfig) {
     const config = userConfig || this.config;
     const runSequence = require('run-sequence').use(this.gulp);
-
+    const tasks = [];
+    if (this.config.browserify) {
+        tasks.push('browserify');
+    }
+    if (this.config.postcss) {
+        tasks.push('postcss');
+    }
     return (cb) => {
-        runSequence('browserify', 'postcss', cb);
+        tasks.push(cb);
+        runSequence.apply(undefined, tasks);
     };
 }

@@ -6,6 +6,8 @@
   },
   "devDependencies": {
     "babelify": "^6.3.0",
+    "css-modulesify": "^0.13.0",
+    "postcss-copy": "^2.3.6",
     "postcss-scss": "^0.1.2",
     "precss": "^1.1.3"
   }

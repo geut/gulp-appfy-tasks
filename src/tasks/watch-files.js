@@ -16,8 +16,10 @@ export default function watchFilesTask(userConfig) {
             runSequence('build', browserSync.reload);
         });
 
-        watch(path.join(config.sourcePath, '**/*.{css,scss,less}'), () => {
-            runSequence('postcss');
-        });
+        if (this.config.postcss) {
+            watch(path.join(config.sourcePath, '**/*.{css,scss,less}'), () => {
+                runSequence('postcss');
+            });
+        }
     };
 }

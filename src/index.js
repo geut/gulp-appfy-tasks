@@ -59,8 +59,12 @@ const appfy = {
          * Gulp task definitions
          */
         this.gulp.task( 'clean', this.tasks.clean() );
-        this.gulp.task( 'browserify', this.tasks.browserify() );
-        this.gulp.task( 'postcss', this.tasks.postcss() );
+        if (this.config.browserify) {
+            this.gulp.task( 'browserify', this.tasks.browserify() );
+        }
+        if (this.config.postcss) {
+            this.gulp.task( 'postcss', this.tasks.postcss() );
+        }
         this.gulp.task( 'browser-sync', this.tasks.browserSync() );
         this.gulp.task( 'watch-files', this.tasks.watchFiles() );
 
