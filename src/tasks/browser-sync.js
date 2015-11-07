@@ -8,12 +8,6 @@ import browserSync from 'browser-sync';
 export default function browserSyncTask(userConfig) {
     const config = userConfig || this.config;
     return () => {
-        browserSync.init({
-            port: config.browsersync.port,
-            notify: config.browsersync.notify,
-            server: {
-                baseDir: './' + config.serverPath
-            }
-        });
+        browserSync.init(config.browsersync);
     };
 }

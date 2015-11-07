@@ -2,7 +2,6 @@
   "sourcePath": "src",
   "destPath": "dist",
   "assetsTemplate": "assets/[hash].[ext]",
-  "serverPath": "",
   "entryCss": "index.css",
   "entryJs": "index.js",
   "entryHtml": "index.html",
