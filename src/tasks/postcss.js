@@ -13,15 +13,16 @@ import postcssCopy from 'postcss-copy';
 
 /**
  * Gulp task to process the css files usign PostCSS and cssnext
- * @param  {object} config Global configuration
  * @return {function}       Function task
  */
-export default function postcssTask(userConfig) {
+export default function postcssTask() {
     const gulp = this.gulp;
-    const config = userConfig || this.config;
+    const config = this.config;
     const plumberOptions = {};
     if (config.notify.onError) {
-        plumberOptions.errorHandler = notify.onError('PostCSS Error: <%= error.message %>');
+        plumberOptions.errorHandler = notify.onError(
+            'PostCSS Error: <%= error.message %>'
+        );
     } else {
         plumberOptions.errorHandler = function errorHandler(err) {
             gutil.log(gutil.colors.bgBlack(err));
@@ -49,7 +50,10 @@ export default function postcssTask(userConfig) {
         'postcss-copy': {
             plugin: postcssCopy,
             options: {
-                src: [config.sourcePath, path.join(config.basePath, 'node_modules')],
+                src: [
+                    config.sourcePath,
+                    path.join(config.basePath, 'node_modules')
+                ],
                 dest: config.destPath,
                 keepRelativePath: false,
                 template: config.assetsTemplate
@@ -90,7 +94,9 @@ export default function postcssTask(userConfig) {
         stream = stream.pipe(gulp.dest(config.destPath));
 
         if (config.watch) {
-            stream = stream.pipe(browserSync.stream({match: '**/*.{css,scss,less}'}));
+            stream = stream.pipe(
+                browserSync.stream({match: '**/*.{css,scss,less}'})
+            );
         }
 
         if (config.notify.onUpdated) {

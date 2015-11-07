@@ -14,15 +14,16 @@ import extend from 'extend';
 
 /**
  * Gulp task to run browserify over config.entryJs
- * @param  {object} config Global configuration
  * @return {function}        Function task
  */
-export default function browserifyTask(userConfig) {
+export default function browserifyTask() {
     const gulp = this.gulp;
-    const config = userConfig || this.config;
+    const config = this.config;
     let onBundleError;
     if (config.notify.onError) {
-        onBundleError = notify.onError('Browserify Error: <%= error.message %>');
+        onBundleError = notify.onError(
+            'Browserify Error: <%= error.message %>'
+        );
     } else {
         onBundleError = (err) => {
             util.log(util.colors.red('Error'), err.message);

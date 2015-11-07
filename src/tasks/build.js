@@ -1,10 +1,8 @@
 /**
  * Gulp task to build the app for production
- * @param  {object} config Global configuration
  * @return {function}      Function task
  */
-export default function buildTask(userConfig) {
-    const config = userConfig || this.config;
+export default function buildTask() {
     const runSequence = require('run-sequence').use(this.gulp);
     const tasks = [];
     if (this.config.browserify) {

@@ -33,8 +33,14 @@ const appfy = {
          * Autosettings
          */
         this.config.basePath = basePath;
-        this.config.sourcePath = path.join( this.config.basePath, this.config.sourcePath );
-        this.config.destPath = path.join( this.config.basePath, this.config.destPath );
+        this.config.sourcePath = path.join(
+            this.config.basePath,
+            this.config.sourcePath
+        );
+        this.config.destPath = path.join(
+            this.config.basePath,
+            this.config.destPath
+        );
 
         if (process.env && (process.env.NODE_ENV === 'production')) {
             this.config.isProduction = true;

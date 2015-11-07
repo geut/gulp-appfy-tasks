@@ -1,5 +1,5 @@
-var $ = require('jquery');
+import $ from 'jquery';
 
-module.exports = function () {
+export default () => {
     $('body').append($('<div class="batman"><h2>I\'m batman!!!</h2></div>'));
 };

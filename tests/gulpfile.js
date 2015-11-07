@@ -3,7 +3,7 @@ var path = require('path');
 
 const rootDir = __dirname;
 
-if (process.argv.indexOf('modules') !== -1) {
+if (process.argv.indexOf('--modules') !== -1) {
     appfy.init(rootDir, {
         sourcePath: 'src-css-modulesify',
         browserify: {

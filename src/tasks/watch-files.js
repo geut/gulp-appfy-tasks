@@ -4,19 +4,25 @@ import path from 'path';
 
 /**
  * Gulp task to watch files
- * @param  {object} config Global configuration
  * @return {function}      Function task
  */
-export default function watchFilesTask(userConfig) {
-    const config = userConfig || this.config;
+export default function watchFilesTask() {
+    const config = this.config;
     const runSequence = require('run-sequence').use(this.gulp);
 
     return () => {
-        watch(path.join(config.basePath, config.serverPath, 'index.html'), () => {
-            runSequence('build', browserSync.reload);
-        });
+        watch(
+            path.join(
+                config.basePath,
+                config.browsersync.server.baseDir,
+                'index.html'
+            ),
+            () => {
+                runSequence('build', browserSync.reload);
+            }
+        );
 
-        if (this.config.postcss) {
+        if (config.postcss) {
             watch(path.join(config.sourcePath, '**/*.{css,scss,less}'), () => {
                 runSequence('postcss');
             });

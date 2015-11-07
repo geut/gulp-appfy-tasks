@@ -50,33 +50,35 @@ This function initialize the appfy object.
 - <a name="userConfig"></a> userConfig (optional): Override the default configuration.
 ```javascript
 {
-    "sourcePath": "src",
-    "destPath": "dist",
-    "assetsTemplate": "assets/[hash].[ext]", // relative to the distPath, read more about assets template in the github page of postcss-copy
-    "serverPath": "",
-    "entryCss": "index.css",
-    "entryJs": "index.js",
-    "entryHtml": "index.html",
-    "browsersync": {
-        "port": 3000,
-        "notify": false
-    },
-    "notify": {
-        "onError": false,
-        "onUpdated": false
-    },
-    "browserify": {
-        "sourcemap": true,
-        "collapse": false,
-        "uglify": false,
-        "extend": null,
-        "options": {}
-    },
-    "postcss": {
-        "sourcemap": true,
-        "plugins": null,
-        "options": {}
+  "sourcePath": "src",
+  "destPath": "dist",
+  "assetsTemplate": "assets/[hash].[ext]",
+  "entryCss": "index.css",
+  "entryJs": "index.js",
+  "entryHtml": "index.html",
+  "browsersync": {
+    "port": 3000,
+    "notify": false,
+    "server": {
+      "baseDir": "./"
     }
+  },
+  "notify": {
+    "onError": false,
+    "onUpdated": false
+  },
+  "browserify": {
+    "sourcemap": true,
+    "collapse": false,
+    "uglify": false,
+    "extend": null,
+    "options": {}
+  },
+  "postcss": {
+    "sourcemap": true,
+    "plugins": null,
+    "options": {}
+  }
 }
 ```
 - userGulp (optional): If is necessary you can set a distinct gulp instance.
