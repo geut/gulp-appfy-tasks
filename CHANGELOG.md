@@ -1,3 +1,16 @@
+<a name="2.1.0"></a>
+# 2.1.0 (2015-11-07)
+
+
+* add conventional changelog ([b5b08d0](https://github.com/geut/gulp-appfy-tasks/commit/b5b08d0))
+* add test for css-modulesify, option to disabled postcss or browserify ([816f9cd](https://github.com/geut/gulp-appfy-tasks/commit/816f9cd))
+* fix options for browser sync; ([ab72dfe](https://github.com/geut/gulp-appfy-tasks/commit/ab72dfe))
+* freeze dependencies ([c913c63](https://github.com/geut/gulp-appfy-tasks/commit/c913c63))
+* minor changes ([1e5ba4c](https://github.com/geut/gulp-appfy-tasks/commit/1e5ba4c))
+* options for browser sync ([b28e730](https://github.com/geut/gulp-appfy-tasks/commit/b28e730))
+
+
+
 <a name="2.0.0"></a>
 # 2.0.0 (2015-10-30)
 
