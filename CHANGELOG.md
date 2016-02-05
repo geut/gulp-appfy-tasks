@@ -1,3 +1,11 @@
+<a name="2.1.3"></a>
+## 2.1.3 (2016-02-05)
+
+
+* allow pass options to uglify ([6ba2a03](https://github.com/geut/gulp-appfy-tasks/commit/6ba2a03))
+
+
+
 <a name="2.1.2"></a>
 ## 2.1.2 (2016-02-05)
 
