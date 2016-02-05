@@ -52,7 +52,10 @@ export default function browserifyTask() {
         }
 
         if (config.browserify.uglify) {
-            stream = stream.pipe(uglify());
+            const uglifyOptions = (typeof config.browserify.uglify === 'object')
+                ? config.browserify.uglify
+                : {};
+            stream = stream.pipe(uglify(uglifyOptions));
         }
 
         if (config.browserify.sourcemap) {
