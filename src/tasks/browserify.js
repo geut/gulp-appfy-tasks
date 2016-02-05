@@ -44,19 +44,23 @@ export default function browserifyTask() {
             .on('error', onBundleError)
             .pipe(source('index.js'));
 
+        if (config.browserify.sourcemap) {
+            // source map external
+            stream = stream.pipe(buffer())
+                .pipe(sourcemaps.init({
+                    loadMaps: true
+                }));
+        }
+
         if (config.browserify.uglify) {
             stream = stream.pipe(streamify(uglify()));
         }
 
         if (config.browserify.sourcemap) {
             // source map external
-            stream = stream.pipe(buffer())
-                .pipe(sourcemaps.init({
-                    loadMaps: true
-                }))
-                .pipe(sourcemaps.write('./', {
-                    sourceRoot: '/'
-                }));
+            stream = stream.pipe(sourcemaps.write('./', {
+                sourceRoot: '/'
+            }));
         }
 
         stream = stream.pipe(gulp.dest(config.destPath));
