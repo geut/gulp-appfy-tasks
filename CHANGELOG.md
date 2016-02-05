@@ -1,3 +1,11 @@
+<a name="2.1.1"></a>
+## 2.1.1 (2016-02-05)
+
+
+* fix minor error with JS sourcemaps and uglify ([e6d5bc9](https://github.com/geut/gulp-appfy-tasks/commit/e6d5bc9))
+
+
+
 <a name="2.1.0"></a>
 # 2.1.0 (2015-11-07)
 
