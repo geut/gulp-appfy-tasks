@@ -2,7 +2,6 @@ import browserify from 'browserify';
 import watchify from 'watchify';
 import browserSync from 'browser-sync';
 import uglify from 'gulp-uglify';
-import streamify from 'gulp-streamify';
 import source from 'vinyl-source-stream';
 import path from 'path';
 import notify from 'gulp-notify';
@@ -42,18 +41,18 @@ export default function browserifyTask() {
 
         let stream = bundler.bundle()
             .on('error', onBundleError)
-            .pipe(source('index.js'));
+            .pipe(source('index.js'))
+            .pipe(buffer());
 
         if (config.browserify.sourcemap) {
             // source map external
-            stream = stream.pipe(buffer())
-                .pipe(sourcemaps.init({
-                    loadMaps: true
-                }));
+            stream = stream.pipe(sourcemaps.init({
+                loadMaps: true
+            }));
         }
 
         if (config.browserify.uglify) {
-            stream = stream.pipe(streamify(uglify()));
+            stream = stream.pipe(uglify());
         }
 
         if (config.browserify.sourcemap) {
