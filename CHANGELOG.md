@@ -1,3 +1,11 @@
+<a name="2.1.2"></a>
+## 2.1.2 (2016-02-05)
+
+
+* remove streamify ([687c9e6](https://github.com/geut/gulp-appfy-tasks/commit/687c9e6))
+
+
+
 <a name="2.1.1"></a>
 ## 2.1.1 (2016-02-05)
 
