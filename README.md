@@ -56,7 +56,7 @@ This function initialize the appfy object.
   "assetsTemplate": "assets/[hash].[ext]",
   "entryCss": "index.css",
   "entryJs": "index.js",
-  "entryHtml": "index.html",
+  "entryHtml": "index.html", // can be false
   "customWatch": false, // array | string | function(config, watch, browserSync)
   "browsersync": {
     "port": 3000,

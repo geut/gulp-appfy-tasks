@@ -11,16 +11,18 @@ export default function watchFilesTask() {
     const runSequence = require('run-sequence').use(this.gulp);
 
     return () => {
-        watch(
-            path.join(
-                config.basePath,
-                config.browsersync.server.baseDir,
-                'index.html'
-            ),
-            () => {
-                runSequence('build', browserSync.reload);
-            }
-        );
+        if (config.entryHtml) {
+            watch(
+                path.join(
+                    config.basePath,
+                    config.browsersync.server.baseDir,
+                    config.entryHtml
+                ),
+                () => {
+                    runSequence('build', browserSync.reload);
+                }
+            );
+        }
 
         if (config.postcss) {
             watch(path.join(config.sourcePath, '**/*.{css,scss,less}'), () => {
