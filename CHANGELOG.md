@@ -1,3 +1,11 @@
+<a name="3.0.1"></a>
+## 3.0.1 (2016-04-06)
+
+* conventional changelog ([aad2b8e](https://github.com/geut/gulp-appfy-tasks/commit/aad2b8e))
+* update dependencies, add customWatch feature, refactory plugins loader for postcss, add travis ([bc5b666](https://github.com/geut/gulp-appfy-tasks/commit/bc5b666))
+
+
+
 <a name="2.1.3"></a>
 ## 2.1.3 (2016-02-05)
 
