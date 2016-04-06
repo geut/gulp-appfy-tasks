@@ -1,3 +1,10 @@
+<a name="3.1.0"></a>
+# 3.1.0 (2016-04-06)
+
+* index.html optional ([176920e](https://github.com/geut/gulp-appfy-tasks/commit/176920e))
+
+
+
 <a name="3.0.1"></a>
 ## 3.0.1 (2016-04-06)
 
