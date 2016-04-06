@@ -52,10 +52,7 @@ export default function browserifyTask() {
         }
 
         if (config.browserify.uglify) {
-            const uglifyOptions = (typeof config.browserify.uglify === 'object')
-                ? config.browserify.uglify
-                : {};
-            stream = stream.pipe(uglify(uglifyOptions));
+            stream = stream.pipe(uglify(config.browserify.uglify));
         }
 
         if (config.browserify.sourcemap) {
@@ -68,7 +65,7 @@ export default function browserifyTask() {
         stream = stream.pipe(gulp.dest(config.destPath));
 
         if (config.watch) {
-            stream.pipe(browserSync.stream({once: true}));
+            stream.pipe(browserSync.stream({ once: true }));
         }
 
         if (config.notify.onUpdated) {

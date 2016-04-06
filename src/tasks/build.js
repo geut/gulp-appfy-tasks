@@ -12,7 +12,6 @@ export default function buildTask() {
         tasks.push('postcss');
     }
     return (cb) => {
-        tasks.push(cb);
-        runSequence.apply(undefined, tasks);
+        runSequence(...tasks, cb);
     };
 }

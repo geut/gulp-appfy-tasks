@@ -30,19 +30,23 @@ export default function postcssTask() {
         };
     }
 
-    // PostCSS plugins configuration
-    const defaultPlugins = {
-        load(plugins = []) {
-            for (const attr in this) {
-                if (this.hasOwnProperty(attr) && (attr !== 'load')) {
-                    plugins.push(
-                        this[attr]
-                            .plugin(this[attr].options)
-                    );
-                }
+    function loader(plugins = {}) {
+        const list = [];
+
+        Object.keys(plugins).forEach((key) => {
+            const p = plugins[key];
+            if (p.postcssVersion) {
+                list.push(p);
+            } else {
+                list.push(p.plugin(p.options));
             }
-            return plugins;
-        },
+        });
+
+        return list;
+    }
+
+    // PostCSS plugins configuration
+    let plugins = {
         'postcss-import': {
             plugin: postcssImport,
             options: {}
@@ -55,20 +59,18 @@ export default function postcssTask() {
                     path.join(config.basePath, 'node_modules')
                 ],
                 dest: config.destPath,
-                keepRelativePath: false,
-                template: config.assetsTemplate
+                template: config.assetsTemplate,
+                relativePath(dirname, fileMeta, result, opts) {
+                    return opts.dest;
+                }
             }
         }
     };
 
-    let plugins;
     if (config.postcss.plugins) {
-        plugins = config.postcss.plugins(
-            config,
-            defaultPlugins
-        );
+        plugins = loader(config.postcss.plugins(config, plugins));
     } else {
-        plugins = defaultPlugins.load();
+        plugins = loader(plugins);
     }
 
     const postcssOptions = extend(true, {}, config.postcss.options, {
@@ -95,7 +97,7 @@ export default function postcssTask() {
 
         if (config.watch) {
             stream = stream.pipe(
-                browserSync.stream({match: '**/*.{css,scss,less}'})
+                browserSync.stream({ match: '**/*.{css,scss,less}' })
             );
         }
 

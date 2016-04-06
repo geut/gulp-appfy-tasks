@@ -1,4 +1,5 @@
 # gulp-appfy-tasks
+[![Build Status](https://travis-ci.org/geut/gulp-appfy-tasks.svg?branch=master)](https://travis-ci.org/geut/gulp-appfy-tasks)
 > Set of gulp tasks to create frontend components oriented apps.
 
 ## Objective
@@ -56,6 +57,7 @@ This function initialize the appfy object.
   "entryCss": "index.css",
   "entryJs": "index.js",
   "entryHtml": "index.html",
+  "customWatch": false, // array | string | function(config, watch, browserSync)
   "browsersync": {
     "port": 3000,
     "notify": false,
@@ -112,7 +114,7 @@ var appfy = require('gulp-appfy-tasks');
 appfy.init(__dirname, {
     browserify: {
         extend: function (config, bundler) {
-            return bundler.transform(require('babelify'));
+            return bundler.transform('babelify', {presets: ["es2015"]});
         },
         options: {} // API official options for browserify
     },
@@ -127,11 +129,16 @@ You can extend the postcss instance or set options with ```userConfig```
 var appfy = require('gulp-appfy-tasks');
 appfy.init(__dirname, {
     postcss: {
-        plugins: function (config, defaultPlugins) {
-            // appfy comes with two excellent postcss plugins: postcss-copy and postcss-import
-            var list = defaultPlugins.load();
-            list.push(require('precss')());
-            return list;
+        plugins: function (config, plugins) {
+            /**
+             * appfy comes with two excellent postcss plugins: postcss-copy and postcss-import.
+             * Note: you can change the options of the default plugins or maybe delete it.
+             */
+            plugins['postcss-copy']
+              .options
+              .template = 'different/template/[name].[ext]';
+            plugins['precss'] = require('precss')();
+            return plugins;
         },
         options: {
             parser: require('postcss-scss') // API official options for postcss

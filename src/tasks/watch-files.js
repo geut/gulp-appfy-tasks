@@ -27,5 +27,15 @@ export default function watchFilesTask() {
                 runSequence('postcss');
             });
         }
+
+        if (config.customWatch) {
+            if (typeof config.customWatch === 'function') {
+                config.customWatch(config, watch, browserSync);
+            } else {
+                watch(config.customWatch, () => {
+                    runSequence('build', browserSync.reload);
+                });
+            }
+        }
     };
 }

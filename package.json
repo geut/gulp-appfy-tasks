@@ -4,46 +4,60 @@
   "description": "Set of gulp tasks used in slush-seed-appfy",
   "main": "index.js",
   "dependencies": {
-    "browser-sync": "~2.8.2",
-    "browserify": "~11.0.1",
-    "bundle-collapser": "~1.2.1",
-    "del": "~2.0.2",
-    "extend": "~3.0.0",
-    "gulp": "~3.9.0",
-    "gulp-notify": "~2.2.0",
-    "gulp-plumber": "~1.0.1",
-    "gulp-postcss": "~6.0.0",
-    "gulp-sourcemaps": "~1.5.2",
-    "gulp-uglify": "~1.3.0",
-    "gulp-util": "~3.0.6",
-    "gulp-watch": "~4.3.5",
-    "postcss-copy": "~2.2.9",
-    "postcss-import": "~7.0.0",
-    "run-sequence": "~1.1.2",
-    "vinyl-buffer": "~1.0.0",
-    "vinyl-source-stream": "~1.1.0",
-    "watchify": "~3.3.1"
+    "browser-sync": "^2.11.2",
+    "browserify": "^13.0.0",
+    "bundle-collapser": "^1.2.1",
+    "del": "^2.2.0",
+    "extend": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "postcss-copy": "^3.1.0",
+    "postcss-import": "^8.1.0",
+    "run-sequence": "^1.1.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   },
   "devDependencies": {
-    "babel": "~5.8.21",
-    "babel-eslint": "~4.1.4",
-    "conventional-changelog": "^0.5.1",
-    "eslint": "~1.9.0",
-    "eslint-config-airbnb": "~0.1.0",
-    "eslint-config-tinchoz49": "~1.0.3",
-    "eslint-plugin-react": "~3.7.1"
+    "babel-cli": "^6.5.1",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-transform-object-assign": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
+    "conventional-changelog": "^1.1.0",
+    "del-cli": "^0.2.0",
+    "eslint": "^2.7.0",
+    "eslint-config-postcss": "^2.0.2",
+    "eslint-config-tinchoz49": "^2.1.0"
   },
   "files": [
     "dist",
     "default-config.json"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -r dist",
+    "test": "eslint src",
+    "clean": "del-cli dist",
     "build": "npm run clean && babel src --source-maps  --out-dir dist",
     "start": "npm run clean && babel src --watch --source-maps --out-dir dist",
     "prepublish": "npm run build",
-    "version": "conventional-changelog -i CHANGELOG.md --overwrite && git add CHANGELOG.md"
+    "version": "conventional-changelog -i CHANGELOG.md --same-file && git add ."
+  },
+  "eslintConfig": {
+    "extends": "tinchoz49"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-object-assign",
+      "add-module-exports"
+    ]
   },
   "repository": {
     "type": "git",

@@ -42,7 +42,7 @@ const appfy = {
             this.config.destPath
         );
 
-        if (process.env && (process.env.NODE_ENV === 'production')) {
+        if (process.env && process.env.NODE_ENV === 'production') {
             this.config.isProduction = true;
         } else {
             this.config.isProduction = false;
