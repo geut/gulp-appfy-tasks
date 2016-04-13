@@ -1,3 +1,4 @@
+@import 'bootstrap';
 @import './component/batman';
 @import './component/test-postcss-plugins/index.scss';
 

@@ -74,7 +74,6 @@ export default function postcssTask() {
     }
 
     const postcssOptions = extend(true, {}, config.postcss.options, {
-        map: config.postcss.sourcemap,
         to: path.join(config.destPath, config.entryCss)
     });
 
