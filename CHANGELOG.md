@@ -1,3 +1,10 @@
+<a name="3.2.0"></a>
+# 3.2.0 (2016-04-13)
+
+* fix sourcemaps in css ([be884ae](https://github.com/geut/gulp-appfy-tasks/commit/be884ae))
+
+
+
 <a name="3.1.0"></a>
 # 3.1.0 (2016-04-06)
 
