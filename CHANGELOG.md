@@ -1,3 +1,10 @@
+<a name="3.2.1"></a>
+## 3.2.1 (2016-04-14)
+
+* fix sourcemap with postcss-import ([acee4ca](https://github.com/geut/gulp-appfy-tasks/commit/acee4ca))
+
+
+
 <a name="3.2.0"></a>
 # 3.2.0 (2016-04-13)
 
