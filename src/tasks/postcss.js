@@ -49,7 +49,11 @@ export default function postcssTask() {
     let plugins = {
         'postcss-import': {
             plugin: postcssImport,
-            options: {}
+            options: {
+                transform(css) {
+                    return css.replace(/\/\*\#[\s\w\._\-\=]*\*\//g, '');
+                }
+            }
         },
         'postcss-copy': {
             plugin: postcssCopy,
@@ -74,7 +78,8 @@ export default function postcssTask() {
     }
 
     const postcssOptions = extend(true, {}, config.postcss.options, {
-        to: path.join(config.destPath, config.entryCss)
+        to: path.join(config.destPath, config.entryCss),
+        map: config.postcss.sourcemap
     });
 
     return () => {
