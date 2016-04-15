@@ -1,3 +1,10 @@
+<a name="3.2.2"></a>
+## 3.2.2 (2016-04-15)
+
+* improve remove old sourcemaps from postcss-import ([bbf8929](https://github.com/geut/gulp-appfy-tasks/commit/bbf8929))
+
+
+
 <a name="3.2.1"></a>
 ## 3.2.1 (2016-04-14)
 
