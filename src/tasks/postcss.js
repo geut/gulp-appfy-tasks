@@ -7,9 +7,11 @@ import gutil from 'gulp-util';
 import extend from 'extend';
 
 // PostCSS and plugins
-import postcss from 'gulp-postcss';
+import postcss from 'postcss';
+import gulpPostcss from 'gulp-postcss';
 import postcssImport from 'postcss-import';
 import postcssCopy from 'postcss-copy';
+import comments from 'postcss-discard-comments';
 
 /**
  * Gulp task to process the css files usign PostCSS and cssnext
@@ -46,12 +48,20 @@ export default function postcssTask() {
     }
 
     // PostCSS plugins configuration
+    const removeOldSourceMaps = comments({
+        remove(comment) {
+            return comment.indexOf('sourceMappingURL') !== -1;
+        }
+    });
+
     let plugins = {
         'postcss-import': {
             plugin: postcssImport,
             options: {
                 transform(css) {
-                    return css.replace(/\/\*\#[\s\w\._\-\=]*\*\//g, '');
+                    return postcss([removeOldSourceMaps])
+                    .process(css)
+                    .then((result) => result.css);
                 }
             }
         },
@@ -85,7 +95,7 @@ export default function postcssTask() {
     return () => {
         let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
             .pipe(plumber(plumberOptions))
-            .pipe(postcss(plugins, postcssOptions));
+            .pipe(gulpPostcss(plugins, postcssOptions));
 
         if (config.postcss.sourcemap) {
             stream = stream
