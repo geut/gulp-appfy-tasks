@@ -1,3 +1,10 @@
+<a name="3.3.0"></a>
+# 3.3.0 (2016-05-18)
+
+* use exorcist to get the JS sourcemap, rename entry options ([d5b8c6b](https://github.com/geut/gulp-appfy-tasks/commit/d5b8c6b))
+
+
+
 <a name="3.2.2"></a>
 ## 3.2.2 (2016-04-15)
 
