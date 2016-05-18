@@ -7,12 +7,13 @@ import path from 'path';
 import notify from 'gulp-notify';
 import util from 'gulp-util';
 import collapse from 'bundle-collapser/plugin';
-import sourcemaps from 'gulp-sourcemaps';
+import exorcist from 'exorcist';
+import transform from 'vinyl-transform';
 import buffer from 'vinyl-buffer';
 import extend from 'extend';
 
 /**
- * Gulp task to run browserify over config.entryJs
+ * Gulp task to run browserify over config.entryJS
  * @return {function}        Function task
  */
 export default function browserifyTask() {
@@ -45,21 +46,14 @@ export default function browserifyTask() {
             .pipe(buffer());
 
         if (config.browserify.sourcemap) {
-            // source map external
-            stream = stream.pipe(sourcemaps.init({
-                loadMaps: true
-            }));
+            const map = path.join(config.destPath, config.entryJS + '.map');
+            stream = stream.pipe(
+                transform(() => exorcist(map, null, '/'))
+            );
         }
 
         if (config.browserify.uglify) {
             stream = stream.pipe(uglify(config.browserify.uglify));
-        }
-
-        if (config.browserify.sourcemap) {
-            // source map external
-            stream = stream.pipe(sourcemaps.write('./', {
-                sourceRoot: '/'
-            }));
         }
 
         stream = stream.pipe(gulp.dest(config.destPath));
@@ -77,7 +71,7 @@ export default function browserifyTask() {
 
     return () => {
         let bundler = browserify(extend(true, {}, config.browserify.options, {
-            entries: path.join(config.sourcePath, config.entryJs),
+            entries: path.join(config.sourcePath, config.entryJS),
             debug: config.browserify.sourcemap
         }));
 

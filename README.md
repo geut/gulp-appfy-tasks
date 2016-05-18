@@ -54,9 +54,9 @@ This function initialize the appfy object.
   "sourcePath": "src",
   "destPath": "dist",
   "assetsTemplate": "assets/[hash].[ext]",
-  "entryCss": "index.css",
-  "entryJs": "index.js",
-  "entryHtml": "index.html", // can be false
+  "entryCSS": "index.css",
+  "entryJS": "index.js",
+  "entryHTML": "index.html", // can be false
   "customWatch": false, // array | string | function(config, watch, browserSync)
   "browsersync": {
     "port": 3000,

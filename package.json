@@ -8,6 +8,7 @@
     "browserify": "^13.0.0",
     "bundle-collapser": "^1.2.1",
     "del": "^2.2.0",
+    "exorcist": "^0.4.0",
     "extend": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-notify": "^2.2.0",
@@ -24,6 +25,7 @@
     "run-sequence": "^1.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
+    "vinyl-transform": "^1.0.0",
     "watchify": "^3.7.0"
   },
   "devDependencies": {

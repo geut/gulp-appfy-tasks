@@ -88,12 +88,12 @@ export default function postcssTask() {
     }
 
     const postcssOptions = extend(true, {}, config.postcss.options, {
-        to: path.join(config.destPath, config.entryCss),
+        to: path.join(config.destPath, config.entryCSS),
         map: config.postcss.sourcemap
     });
 
     return () => {
-        let stream = gulp.src(path.join(config.sourcePath, config.entryCss))
+        let stream = gulp.src(path.join(config.sourcePath, config.entryCSS))
             .pipe(plumber(plumberOptions))
             .pipe(gulpPostcss(plugins, postcssOptions));
 

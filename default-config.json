@@ -2,9 +2,9 @@
   "sourcePath": "src",
   "destPath": "dist",
   "assetsTemplate": "assets/[hash].[ext]",
-  "entryCss": "index.css",
-  "entryJs": "index.js",
-  "entryHtml": "index.html",
+  "entryCSS": "index.css",
+  "entryJS": "index.js",
+  "entryHTML": "index.html",
   "customWatch": false,
   "browsersync": {
     "port": 3000,

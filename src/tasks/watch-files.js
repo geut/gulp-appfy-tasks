@@ -11,12 +11,12 @@ export default function watchFilesTask() {
     const runSequence = require('run-sequence').use(this.gulp);
 
     return () => {
-        if (config.entryHtml) {
+        if (config.entryHTML) {
             watch(
                 path.join(
                     config.basePath,
                     config.browsersync.server.baseDir,
-                    config.entryHtml
+                    config.entryHTML
                 ),
                 () => {
                     runSequence('build', browserSync.reload);
