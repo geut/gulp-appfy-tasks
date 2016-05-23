@@ -7,8 +7,7 @@ import path from 'path';
 import notify from 'gulp-notify';
 import util from 'gulp-util';
 import collapse from 'bundle-collapser/plugin';
-import exorcist from 'exorcist';
-import transform from 'vinyl-transform';
+import sourcemaps from 'gulp-sourcemaps';
 import buffer from 'vinyl-buffer';
 import extend from 'extend';
 
@@ -46,14 +45,21 @@ export default function browserifyTask() {
             .pipe(buffer());
 
         if (config.browserify.sourcemap) {
-            const map = path.join(config.destPath, config.entryJS + '.map');
-            stream = stream.pipe(
-                transform(() => exorcist(map, null, '/'))
-            );
+            // source map external
+            stream = stream.pipe(sourcemaps.init({
+                loadMaps: true
+            }));
         }
 
         if (config.browserify.uglify) {
             stream = stream.pipe(uglify(config.browserify.uglify));
+        }
+
+        if (config.browserify.sourcemap) {
+            // source map external
+            stream = stream.pipe(sourcemaps.write('./', {
+                sourceRoot: '/'
+            }));
         }
 
         stream = stream.pipe(gulp.dest(config.destPath));
