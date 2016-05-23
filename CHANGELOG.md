@@ -1,3 +1,10 @@
+<a name="3.4.0"></a>
+# 3.4.0 (2016-05-23)
+
+* back to use gulp-sourcemap instead of exorcist ([94c1c99](https://github.com/geut/gulp-appfy-tasks/commit/94c1c99))
+
+
+
 <a name="3.3.0"></a>
 # 3.3.0 (2016-05-18)
 
