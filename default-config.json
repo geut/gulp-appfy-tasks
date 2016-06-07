@@ -19,7 +19,6 @@
   },
   "browserify": {
     "sourcemap": true,
-    "collapse": false,
     "uglify": false,
     "extend": null,
     "options": {}

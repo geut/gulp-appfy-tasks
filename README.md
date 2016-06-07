@@ -71,7 +71,6 @@ This function initialize the appfy object.
   },
   "browserify": {
     "sourcemap": true,
-    "collapse": false,
     "uglify": false,
     "extend": null,
     "options": {}

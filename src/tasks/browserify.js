@@ -6,7 +6,6 @@ import source from 'vinyl-source-stream';
 import path from 'path';
 import notify from 'gulp-notify';
 import util from 'gulp-util';
-import collapse from 'bundle-collapser/plugin';
 import sourcemaps from 'gulp-sourcemaps';
 import buffer from 'vinyl-buffer';
 import extend from 'extend';
@@ -35,10 +34,6 @@ export default function browserifyTask() {
      * @return {object} stream  Gulp stream
      */
     function browserifyBundle(bundler) {
-        if (config.browserify.collapse) {
-            bundler.plugin(collapse);
-        }
-
         let stream = bundler.bundle()
             .on('error', onBundleError)
             .pipe(source('index.js'))
