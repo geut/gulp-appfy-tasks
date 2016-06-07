@@ -1,3 +1,10 @@
+<a name="3.4.1"></a>
+## 3.4.1 (2016-06-07)
+
+* remove bundler plugin ([5a7c69c](https://github.com/geut/gulp-appfy-tasks/commit/5a7c69c))
+
+
+
 <a name="3.4.0"></a>
 # 3.4.0 (2016-05-23)
 
