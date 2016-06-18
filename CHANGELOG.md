@@ -1,3 +1,10 @@
+<a name="3.5.0"></a>
+# 3.5.0 (2016-06-18)
+
+* added watchify options ([7e6bc05](https://github.com/geut/gulp-appfy-tasks/commit/7e6bc05))
+
+
+
 <a name="3.4.1"></a>
 ## 3.4.1 (2016-06-07)
 
