@@ -71,17 +71,23 @@ export default function browserifyTask() {
     }
 
     return () => {
+        const cacheOptions = {};
+        if (config.watch) {
+            cacheOptions.cache = {};
+            cacheOptions.packageCache = {};
+        }
+
         let bundler = browserify(extend(true, {}, config.browserify.options, {
             entries: path.join(config.sourcePath, config.entryJS),
             debug: config.browserify.sourcemap
-        }));
+        }, cacheOptions));
 
         if (config.browserify.extend) {
             bundler = config.browserify.extend(config, bundler);
         }
 
         if (config.watch) {
-            bundler = watchify(bundler);
+            bundler = bundler.plugin(watchify, config.browserify.watchify);
 
             bundler.on('update', () => {
                 browserifyBundle(bundler);

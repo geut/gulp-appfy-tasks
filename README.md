@@ -70,6 +70,13 @@ This function initialize the appfy object.
     "onUpdated": false
   },
   "browserify": {
+    "watchify": {
+      "delay": 100,
+      "ignoreWatch": [
+        "**/node_modules/**"
+      ],
+      "poll": false
+    },
     "sourcemap": true,
     "uglify": false,
     "extend": null,
