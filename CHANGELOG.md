@@ -1,3 +1,10 @@
+<a name="3.5.1"></a>
+## 3.5.1 (2016-06-28)
+
+* fix uglify options ([9a1a801](https://github.com/geut/gulp-appfy-tasks/commit/9a1a801))
+
+
+
 <a name="3.5.0"></a>
 # 3.5.0 (2016-06-18)
 
