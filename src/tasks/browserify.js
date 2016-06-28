@@ -47,7 +47,11 @@ export default function browserifyTask() {
         }
 
         if (config.browserify.uglify) {
-            stream = stream.pipe(uglify(config.browserify.uglify));
+            stream = stream.pipe(uglify(
+                typeof config.browserify.uglify === 'object' ?
+                config.browserify.uglify :
+                {}
+            ));
         }
 
         if (config.browserify.sourcemap) {
